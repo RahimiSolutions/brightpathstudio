@@ -1,7 +1,11 @@
 <script lang="ts">
 	import { dev } from '$app/environment';
+    import '../lib/styles/fonts.css';
 	import { language, locale } from '$lib/text/i18n';
 	import { onMount } from 'svelte';
+	import Navbar from '../components/navbar/Navbar.svelte';
+	import MobileFooter from '../components/footer/MobileFooter.svelte';
+	import Mobilenavbar from '../components/navbar/MobileNavbar.svelte';
 
 	var userLang = navigator.language;
 	// nb-NO
@@ -23,13 +27,6 @@
 </script>
 
 <svelte:head>
-	<link rel="preconnect" href="https://fonts.googleapis.com" />
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
-	<!-- <link
-		href="https://fonts.googleapis.com/css2?family=Anybody:wght@100..900&family=Quicksand:wght@300..700&display=swap"
-		rel="stylesheet"
-	/> -->
-
 	<title>Brightpath Studio | Styrker bedrifter med alt-i-ett digitale løsninger</title>
 	<meta
 		name="description"
@@ -56,15 +53,26 @@
 	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 </svelte:head>
 
+<Navbar />
+<Mobilenavbar/>
 <slot />
 
 <style>
+	
 	:global(*) {
-		--white: #fefefe;
-		--primary: #f8de7e;
-		--secondary: #fbedb7;
-		--bg-light: rgb(250, 250, 250);
-		--bg-dark: #080a16;
+		--blue-400: rgb(120, 174, 255);
+		--blue-500: #4D93FB;
+		--blue-600: #3D86F3;
+		--white: #fdfdfd;
+		--black: #2a2a2a;
+		--grey: #5d5d5d;
+
+        --fs-400: 1rem;
+        --fs-500: 1.25rem;
+        --fs-600: 1.5rem;
+        --fs-700: 2rem;
+        --fs-800: 2.5rem;
+        --fs-900: 2.75rem;
 		/* --bg-dark: #0d0f0f; */
 		margin: 0;
 		padding: 0;
@@ -72,6 +80,7 @@
 		scroll-behavior: smooth;
 	}
 	:global(body) {
-		background-color: var(--bg-light);
+		background-color: var(--white);
 	}
+	
 </style>

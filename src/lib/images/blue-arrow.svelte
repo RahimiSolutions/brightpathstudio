@@ -1,4 +1,9 @@
-<svg width="342" height="181" viewBox="0 0 342 181" fill="none" xmlns="http://www.w3.org/2000/svg">
+<script>
+    let {width = '32'} = $props()
+</script>
+
+<svg
+    {width} viewBox="0 0 342 181" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M341.468 91.512L334.005 81.54L190.199 47.705L192.258 58.132L341.468 91.512Z" fill="url(#paint0_linear_668_59)"/>
 <path d="M341.468 91.512L334.005 81.54L190.199 47.705L192.258 58.132L341.468 91.512Z" fill="url(#paint1_linear_668_59)"/>
 <path d="M340.78 90.592L192.1 57.33L192.258 58.132L341.468 91.512L340.78 90.592Z" fill="url(#paint2_linear_668_59)"/>
