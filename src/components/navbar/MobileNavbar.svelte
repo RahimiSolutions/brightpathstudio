@@ -49,6 +49,7 @@
 				style:height
 				transition:slide={{ delay: 100, duration: 300, easing: quintOut, axis: 'y' }}
 			>
+			
 				<div class="mobile-nav-closed">
 					<div class="mobile-nav-logo">
 						<a href="/"><img src={LogoNavbar} alt="BrighPath" /></a>

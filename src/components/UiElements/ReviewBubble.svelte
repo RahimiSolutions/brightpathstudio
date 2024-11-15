@@ -32,14 +32,14 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: 120px;
-		height: 120px;
+		width: clamp(5.3125rem, 2.9348rem + 3.8043vw, 7.5rem);
+		height: clamp(5.3125rem, 2.9348rem + 3.8043vw, 7.5rem);
 	}
-
+	 
 	.profile-image {
 		position: relative;
-		width: 120px;
-		height: 120px;
+		width: clamp(5.3125rem, 2.9348rem + 3.8043vw, 7.5rem);
+		height: clamp(5.3125rem, 2.9348rem + 3.8043vw, 7.5rem);
 		border-radius: 50%;
 		overflow: hidden;
 		display: flex;

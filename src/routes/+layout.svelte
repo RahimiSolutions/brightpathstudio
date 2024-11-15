@@ -60,9 +60,12 @@
 <style>
 	
 	:global(*) {
+		--blue-300: rgba(120, 174, 255, 0.25);
 		--blue-400: rgb(120, 174, 255);
 		--blue-500: #4D93FB;
 		--blue-600: #3D86F3;
+		--blue-700: #266198;
+		--blue-800: #11416e;
 		--white: #fdfdfd;
 		--black: #2a2a2a;
 		--grey: #5d5d5d;

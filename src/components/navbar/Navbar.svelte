@@ -73,7 +73,7 @@
 				align-items: center;
 				a {
 					font-family: 'Roundo';
-					font-size: clamp(0.8rem, 1vw + 1rem, 2rem);
+					font-size: clamp(1.25rem, 0.4348rem + 1.3043vw, 2rem);
 					font-weight: 5 00;
 					color: var(--black);
 					text-decoration: none;
