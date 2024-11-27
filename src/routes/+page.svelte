@@ -7,6 +7,11 @@
 	import funnelPieceFour from '$lib/images/Funnel_piece_four.svg';
 	import funnelPieceFive from '$lib/images/Funnel_piece_five.svg';
 	import character from '$lib/images/Character.svg';
+	import characterAds from '$lib/images/Character-googleads.svg';
+	import bgWaves from '$lib/images/waves.svg';
+	import landingpage from '$lib/images/landingpage.png';
+	import booking from '$lib/images/booking.png';
+	import bend from '$lib/images/bend.svg';
 
 	import bgTexture from '$lib/images/bg-texture.png';
 	import reviwerOne from '$lib/images/reviewerOne.png';
@@ -19,6 +24,12 @@
 	import Button from '../components/UiElements/button.svelte';
 	import ReviewBubble from '../components/UiElements/ReviewBubble.svelte';
 	import { onMount } from 'svelte';
+	import ReviewCarousel from '../components/UiElements/ReviewCarousel.svelte';
+	import StepCard from '../components/UiElements/StepCard.svelte';
+	import Faq from '../components/UiElements/Faq.svelte';
+	import Comparison from '../components/UiElements/ComparisonCard.svelte';
+	import ComparisonCards from '../components/UiElements/ComparisonCards.svelte';
+	import Toggle from '../components/UiElements/toggle.svelte';
 	const reviews = [
 		{ imageSrc: reviwerOne, reviewKey: 'reviewOne' },
 		{ imageSrc: reviwerTwo, reviewKey: 'reviewTwo' },
@@ -53,6 +64,19 @@
 		// Randomly select a set of positions
 		selectedPositions = positionSets[Math.floor(Math.random() * positionSets.length)];
 	});
+
+	let annualPrice = false;
+
+	function getSavings(annualPrice: boolean) {
+		switch (annualPrice) {
+			case false:
+				return $t('monthly-saving');
+			case true:
+				return $t('annual-saving');
+			default:
+				return null;
+		}
+	}
 </script>
 
 <MediaQuery query="(min-width: 1000px)" let:matches>
@@ -171,8 +195,6 @@
 													<h3>{@html $t('funnel-three-text')}</h3>
 												</div>
 											</div>
-
-											
 										</div>
 									</div>
 									<div class="level">
@@ -195,8 +217,7 @@
 									<div class="level">
 										<div class="funnel-piece five">
 											<img src={funnelPieceFive} alt="Funnel piece five" />
-											<div class="text">
-											</div>
+											<div class="text"></div>
 										</div>
 
 										<img
@@ -204,6 +225,125 @@
 											src={character}
 											alt="animated character pointing at funnel"
 										/>
+									</div>
+								</div>
+							</div>
+						</section>
+						<section class="review-section">
+							<ReviewCarousel />
+						</section>
+
+						<section class="function-ads">
+							<div class="content">
+								<div class="text-container">
+									<div class="tag">{@html $t('function-ads-tag')}</div>
+									<div class="title">{@html $t('function-ads-title')}</div>
+									<div class="text">{@html $t('function-ads-text')}</div>
+									<Button />
+								</div>
+								<div class="image">
+									<img src={characterAds} alt="Character holding google ads logo" />
+								</div>
+							</div>
+						</section>
+						<section class="function-landingpage">
+							<div class="content">
+								<div class="image">
+									<img src={landingpage} alt="Mockups of landingpages" />
+								</div>
+								<div class="text-container">
+									<div class="tag">{@html $t('function-landing-tag')}</div>
+									<div class="title">{@html $t('function-landing-title')}</div>
+									<div class="text">{@html $t('function-landing-text')}</div>
+									<Button />
+								</div>
+							</div>
+						</section>
+						<section class="function-booking">
+							<div class="bend">
+								<img src={bend} alt="background illustration" />
+							</div>
+							<div class="content">
+								<div class="text-container">
+									<div class="tag">{@html $t('function-booking-tag')}</div>
+									<div class="title">{@html $t('function-booking-title')}</div>
+									<div class="text">{@html $t('function-booking-text')}</div>
+									<Button />
+								</div>
+								<div class="image">
+									<img src={booking} alt="Device mockups for booking page" />
+								</div>
+							</div>
+						</section>
+
+						<section class="comparison-section">
+							<h1>{@html $t('features-title')}</h1>
+							<ComparisonCards />
+							<div class="savings-section">
+								<div class="toggle">
+									<p>{@html $t('monthly')}</p>
+									<Toggle bind:annualPrice />
+									<p>{@html $t('annual')}</p>
+								</div>
+								<div class="saving-amount">
+									<p>
+										{@html $t('save')}
+
+										<span class="highlight-blue">{getSavings(annualPrice)}</span>
+
+										{@html $t('with-brightpath')}
+									</p>
+								</div>
+							</div>
+							<Button />
+						</section>
+
+						<section class="function-ads">
+							<div class="content">
+								<div class="text-container">
+									<div class="tag">{@html $t('function-invoice-tag')}</div>
+									<div class="title">{@html $t('function-invoice-title')}</div>
+									<div class="text">{@html $t('function-invoice-text')}</div>
+									<Button />
+								</div>
+								<div class="image"></div>
+							</div>
+						</section>
+
+						<section class="steps-section">
+							<div class="text">
+								<div class="title">{@html $t('steps-title')}</div>
+								<div class="subtitle">{@html $t('steps-subtitle')}</div>
+							</div>
+							<div class="steps">
+								<StepCard number="1" title={$t('step-one-title')} text={$t('step-one-text')} />
+								<StepCard number="2" title={$t('step-two-title')} text={$t('step-two-text')} />
+								<StepCard number="3" title={$t('step-three-title')} text={$t('step-three-text')} />
+							</div>
+							<div class="cta">
+								<Button link="https://booking.brightpath.studio/" />
+							</div>
+						</section>
+
+						<section class="faq-section">
+							<div class="title">{@html $t('faq-title')}</div>
+							<Faq />
+						</section>
+
+						<section class="ready-section">
+							<div class="back">
+								<img src={bgWaves} alt="Abstract illustration" />
+							</div>
+							<div class="front">
+								<div class="container">
+									<div class="title">{@html $t('cta-title')}</div>
+									<div class="text">
+										<p>
+											{@html $t('cta-text')}
+										</p>
+									</div>
+									<div class="button">
+										<Button />
 									</div>
 								</div>
 							</div>
@@ -254,6 +394,26 @@
 	.container {
 		font-family: 'Roundo';
 		color: var(--black);
+		overflow-x: clip;
+		position: relative;
+		:global(.highlight-blue) {
+			color: var(--blue-600);
+			font-weight: 600;
+			&::selection {
+				background: rgba(0, 123, 255, 0.2); /* Semi-transparent blue */
+				color: #000; /* Black text for contrast */
+				text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5); /* Subtle white shadow for depth */
+			}
+		}
+		:global(.highlight-red) {
+			color: #9c0000;
+			font-weight: 600;
+			&::selection {
+				background: rgba(0, 123, 255, 0.2); /* Semi-transparent blue */
+				color: #000; /* Black text for contrast */
+				text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5); /* Subtle white shadow for depth */
+			}
+		}
 		.bg-texture {
 			z-index: 0;
 			position: absolute;
@@ -265,16 +425,17 @@
 			position: relative;
 			z-index: 2;
 			width: 80%;
-			margin: 50px auto;
+			margin: 170px auto;
 
 			.top {
 				width: 60%;
 				margin: auto;
-				font-size: clamp(1.5rem, -0.6304rem + 2.6087vw, 2.5rem);
-				font-weight: 600;
+				font-size: var(--fs-700);
+				font-weight: 500;
 				text-transform: capitalize;
 				text-align: center;
 				position: relative;
+
 				.blue-arrow {
 					position: absolute;
 					right: 20%;
@@ -286,8 +447,8 @@
 				width: 60%;
 				margin: 100px auto;
 				color: var(--blue-600);
-				font-size: clamp(0.8rem, 0.7283rem + 0.4348vw, 1.25rem);
-				font-weight: 600;
+				font-size: var(--fs-400);
+				font-weight: 500;
 				letter-spacing: 1px;
 				text-transform: capitalize;
 				text-align: start;
@@ -315,25 +476,19 @@
 
 		.process-section {
 			width: 80%;
-			margin: 100px auto 0 auto;
+			margin: 100px auto 150px auto;
 			.process-title {
 				text-align: center;
-				font-size: clamp(1.5rem, -0.1304rem + 2.6087vw, 3rem);
+				font-size: var(--fs-800);
+				font-variation-settings: 'wght' 600;
+				text-transform: capitalize;
 				margin: 20px 0;
 			}
 			.process-subtitle {
-				font-size: clamp(1rem, 0.7283rem + 0.4348vw, 1.25rem);
+				font-size: var(--fs-500);
 				width: 60ch;
 				margin: auto;
 				text-align: center;
-				:global(.highlight-blue) {
-					color: var(--blue-600);
-					font-weight: 600;
-				}
-				:global(.highlight-red) {
-					color: #9c0000;
-					font-weight: 600;
-				}
 			}
 		}
 
@@ -354,10 +509,10 @@
 						border-bottom: 2px solid var(--white);
 						padding: 5% 5%;
 						h1 {
-							font-size: clamp(1.5rem, -1.2174rem + 4.3478vw, 4rem);
+							font-size: var(--fs-800);
 						}
 						p {
-							font-size: clamp(1rem, 0.4565rem + 0.8696vw, 1.5rem);
+							font-size: var(--fs-600);
 						}
 					}
 				}
@@ -375,9 +530,9 @@
 					align-items: center;
 					justify-content: center;
 					position: relative;
-					.funnel-piece{
+					.funnel-piece {
 						position: relative;
-						.text{
+						.text {
 							text-align: center;
 							position: absolute;
 							top: 50%;
@@ -386,62 +541,62 @@
 							color: var(--white);
 							width: 80%;
 						}
-						.description{
+						.description {
 							font-family: 'Sfpro';
-							font-variation-settings: "wght" 400;
+							font-variation-settings: 'wght' 400;
 							text-wrap: wrap;
 
 							position: absolute;
 							right: clamp(-18.75rem, 7.337rem - 21.7391vw, -6.25rem);
 							top: 50%;
 							transform: translate(50%, -50%);
-							
-							font-size: 0.4em;
+
+							font-size: var(--fs-300);
 							width: clamp(16rem, 6.2174rem + 15.6522vw, 25rem);
-							
+
 							display: flex;
 							flex-direction: column;
 							justify-content: space-evenly;
 							padding: 5px 20px;
 							background-color: rgba(120, 174, 255, 0.25);
 							border-radius: 15px;
-							.description-title{
-								font-size: clamp(1rem, 1.1087rem + -0.1739vw, 0.9rem);
-								
+							.description-title {
+								font-size: var(--fs-400);
+
 								color: var(--blue-800);
 							}
-							.description-text{
-								font-size: clamp(0.6rem, 0.2283rem + 0.4348vw, 0.75rem);
+							.description-text {
+								font-size: var(--fs-300);
 								color: var(--blue-700);
 							}
 						}
 					}
 
-					.one{
+					.one {
 						font-size: clamp(1.5rem, 0.9565rem + 0.8696vw, 2rem);
-						.text{
+						.text {
 							transform: translate(-50%);
 						}
 					}
-					.two{
+					.two {
 						font-size: clamp(1rem, 0.5652rem + 0.6957vw, 1.4rem);
-						.text{
+						.text {
 							width: 70%;
 						}
 					}
-					.three{
+					.three {
 						font-size: clamp(1rem, 0.7283rem + 0.4348vw, 1.25rem);
-						.text{
+						.text {
 							width: 70%;
 						}
 					}
-					.four{
+					.four {
 						font-size: clamp(0.75rem, 0.4783rem + 0.4348vw, 1rem);
 					}
-					.five{
+					.five {
 						font-size: clamp(0.75rem, 0.4783rem + 0.4348vw, 1rem);
 					}
-					
+
 					.character {
 						bottom: 0;
 						left: -15%;
@@ -451,7 +606,294 @@
 				}
 			}
 		}
+		.review-section {
+			margin: 250px 0 150px 0;
+		}
+
+		.function-ads {
+			margin: 100px 0;
+			.content {
+				width: 80%;
+				margin: auto;
+				display: flex;
+				.text-container {
+					flex: 1;
+
+					:global(.highlight-blue) {
+						color: var(--blue-500);
+						font-weight: 500;
+					}
+					.tag {
+						font-size: var(--fs-400);
+						color: var(--grey);
+					}
+					.title {
+						font-size: var(--fs-700);
+					}
+					.text {
+						font-size: var(--fs-400);
+						width: 40ch;
+						font-weight: 500;
+						margin: 24px 0;
+					}
+				}
+				.image {
+					display: flex;
+					flex: 1;
+					justify-content: center;
+					img {
+					}
+				}
+			}
+		}
+
+		.function-landingpage {
+			margin: 100px 0;
+			position: relative;
+			z-index: 5;
+			.content {
+				width: 90%;
+				margin: auto;
+				display: flex;
+				gap: 2rem;
+				.text-container {
+					flex: 1;
+
+					:global(.highlight-blue) {
+						color: var(--blue-500);
+						font-weight: 500;
+					}
+					.tag {
+						font-size: var(--fs-400);
+						color: var(--grey);
+					}
+					.title {
+						font-size: var(--fs-700);
+					}
+					.text {
+						font-size: var(--fs-400);
+						width: 40ch;
+						font-weight: 500;
+						margin: 24px 0;
+					}
+				}
+				.image {
+					display: flex;
+					flex: 1;
+					justify-content: center;
+					img {
+						max-width: 100%;
+						border-radius: 25px;
+						box-shadow: 4px 4px 12px 0 rgba(0, 0, 0, 0.25);
+					}
+				}
+			}
+		}
+		.function-booking {
+			margin: 150px 0;
+			position: relative;
+			width: 100%;
+			.bend {
+				top: -25%;
+				width: 100%;
+				position: absolute;
+				z-index: 0;
+				img {
+					min-width: 100%;
+				}
+			}
+			.content {
+				position: relative;
+				width: 90%;
+				margin: auto;
+				display: flex;
+				gap: 2rem;
+				.text-container {
+					flex: 1;
+
+					:global(.highlight-blue) {
+						color: var(--blue-500);
+						font-weight: 500;
+					}
+					.tag {
+						font-size: var(--fs-400);
+						color: var(--grey);
+					}
+					.title {
+						font-size: var(--fs-700);
+					}
+					.text {
+						font-size: var(--fs-400);
+						width: 40ch;
+						font-weight: 500;
+						margin: 24px 0;
+					}
+				}
+				.image {
+					display: flex;
+					flex: 1;
+					justify-content: center;
+					img {
+						max-width: 100%;
+						border-radius: 25px;
+					}
+				}
+			}
+		}
+
+		.comparison-section {
+			margin-bottom: 150px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			h1 {
+				font-size: var(--fs-800);
+				font-variation-settings: 'wght' 600;
+				width: fit-content;
+				margin: auto;
+				width: 20ch;
+				text-align: center;
+				text-transform: capitalize;
+				margin-bottom: 50px;
+			}
+			.savings-section {
+				margin: 50px;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				.toggle {
+					display: flex;
+					p {
+						font-weight: 600;
+						font-size: var(--fs-600);
+						margin: 0 15px;
+					}
+				}
+				.saving-amount {
+					p {
+						font-weight: 500;
+						font-size: var(--fs-800);
+					}
+				}
+			}
+		}
+
+		.steps-section {
+			.text {
+				width: 80%;
+				margin: 0 auto 10vh auto;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				.title {
+					font-variation-settings: 'wght' 600;
+					font-size: var(--fs-800);
+					text-transform: capitalize;
+				}
+				.subtitle {
+					font-size: var(--fs-600);
+					transform: translateX(50%);
+					font-variation-settings: 'wght' 500;
+				}
+				.subtitle::first-letter {
+					text-transform: uppercase;
+				}
+			}
+			.steps {
+				display: flex;
+				gap: 5%;
+				justify-content: space-evenly;
+				width: 80%;
+				margin: auto;
+			}
+			.cta {
+				width: fit-content;
+				margin: 50px auto 0 auto;
+			}
+		}
+
+		.faq-section {
+			margin: 150px auto 0 auto;
+			width: 100%;
+			color: var(--white);
+			background-color: var(--blue-700);
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			.title {
+				font-variation-settings: 'wght' 600;
+				font-size: var(--fs-800);
+				margin: 20px auto;
+			}
+		}
+
+		.ready-section {
+			position: relative;
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			.front {
+				// background: linear-gradient(155deg, rgba(116,171,251,1) 0%, rgba(253,253,253,1) 100%);
+				border-radius: 25px;
+				padding: 20px;
+				width: 60%;
+				// box-shadow: 5px 5px 12px 0 rgba(0, 0, 0, 0.25);
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translateX(-50%);
+
+				.container {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: space-evenly;
+					height: 100%;
+					width: fit-content;
+					.title {
+						margin-bottom: 16px;
+						font-family: 'Roundo';
+						font-size: var(--fs-700);
+						font-variation-settings: 'wght' 600;
+						display: flex;
+						width: 100%;
+					}
+					.text {
+						display: flex;
+						justify-content: center;
+
+						width: 100%;
+						font-size: var(--fs-600);
+						font-weight: 500;
+
+						p {
+							width: 30ch;
+							text-align: center;
+						}
+					}
+					.button {
+						display: flex;
+						width: 100%;
+						padding: 5px;
+						margin: 16px 0;
+						justify-content: center;
+					}
+				}
+			}
+			.back {
+				width: 100%;
+				img {
+					min-width: 100%;
+				}
+			}
+		}
 	}
+
 	.mobile-container {
 		.hero-section {
 			width: 90%;
@@ -470,12 +912,6 @@
 				text-transform: capitalize;
 				text-align: center;
 				position: relative;
-				.blue-arrow {
-					position: absolute;
-					right: 20%;
-					top: 120%;
-					transform: scaleX(-1) rotate(20deg);
-				}
 			}
 			.bottom {
 				width: 90%;

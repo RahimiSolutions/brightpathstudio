@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { dev } from '$app/environment';
-    import '../lib/styles/fonts.css';
+	import '../lib/styles/fonts.css';
 	import { language, locale } from '$lib/text/i18n';
 	import { onMount } from 'svelte';
 	import Navbar from '../components/navbar/Navbar.svelte';
 	import MobileFooter from '../components/footer/MobileFooter.svelte';
 	import Mobilenavbar from '../components/navbar/MobileNavbar.svelte';
+	import Footer from '../components/footer/Footer.svelte';
 
 	var userLang = navigator.language;
 	// nb-NO
@@ -54,29 +55,47 @@
 </svelte:head>
 
 <Navbar />
-<Mobilenavbar/>
+<Mobilenavbar />
 <slot />
+<Footer/>
+<MobileFooter />
 
 <style>
-	
 	:global(*) {
+		--blue-200: rgba(120, 174, 255, 0.15);
 		--blue-300: rgba(120, 174, 255, 0.25);
 		--blue-400: rgb(120, 174, 255);
-		--blue-500: #4D93FB;
-		--blue-600: #3D86F3;
-		--blue-700: #266198;
+		--blue-500: #4d93fb;
+		--blue-600: #3d86f3;
+		--blue-700: #124fa9;
 		--blue-800: #11416e;
 		--white: #fdfdfd;
 		--black: #2a2a2a;
 		--grey: #5d5d5d;
+		--red:#9C0000;
+		--green:#08B90E;
 
-        --fs-400: 1rem;
-        --fs-500: 1.25rem;
-        --fs-600: 1.5rem;
-        --fs-700: 2rem;
-        --fs-800: 2.5rem;
-        --fs-900: 2.75rem;
-		/* --bg-dark: #0d0f0f; */
+		/* Smallest size, suitable for small print or tags */
+		--fs-300: clamp(0.8rem, 0.5826rem + 0.3478vw, 1rem);
+
+		/* Small text, good for body copy or less emphasized text */
+		--fs-400: clamp(0.8rem, 0.7283rem + 0.4348vw, 1.25rem);
+
+		/* Medium text, good for body copy or subtitles */
+		--fs-500: clamp(1rem, 0.7283rem + 0.4348vw, 1.25rem);
+
+		/* Large text, good for subtitles or small headings */
+		--fs-600: clamp(1.25rem, 0.9783rem + 0.4348vw, 1.5rem);
+
+		/* Extra large, good for titles */
+		--fs-700: clamp(1.5rem, -0.6304rem + 2.6087vw, 2.5rem);
+
+		/* 2X large, good for main headings */
+		--fs-800: clamp(2rem, -0.1739rem + 3.4783vw, 4rem);
+
+		/* 3X large, good for hero text or very large titles */
+		--fs-900: clamp(2.5rem, -1.2174rem + 4.3478vw, 4rem);
+
 		margin: 0;
 		padding: 0;
 		box-sizing: border-box;
@@ -85,5 +104,4 @@
 	:global(body) {
 		background-color: var(--white);
 	}
-	
 </style>

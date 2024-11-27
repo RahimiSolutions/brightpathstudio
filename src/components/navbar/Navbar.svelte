@@ -32,20 +32,17 @@
 		text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5); /* Subtle white shadow for depth */
 	}
 	nav {
-		.language-picker {
-			position: absolute;
-			right: -125px;
-			top: 20px;
-		}
-		position: relative;
+		position: fixed;
+		left: 50%;
+		top: 25px;
+		transform: translateX(-50%);
 		z-index: 99;
 		width: 60%;
-		margin: 50px auto 0 auto;
 		border-radius: 25px;
 		background-color: rgba(120, 174, 255, 0.15);
 		border: 0.5px solid var(--blue-600);
 		backdrop-filter: blur(8px);
-		height: 100px;
+		height: 90px;
 		.container {
 			height: 100%;
 			max-width: 100%;
@@ -85,6 +82,11 @@
 					}
 				}
 			}
+		}
+		.language-picker {
+			position: absolute;
+			right: -125px;
+			top: 20px;
 		}
 	}
 </style>
