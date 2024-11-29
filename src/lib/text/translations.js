@@ -147,6 +147,11 @@ export const translations = {
         "monthly-saving":"$612 monthly",
         "annual-saving":"$7340 annually",
 
+        // FOOTER
+        "contact-us":"Any questions? <br />Feel free to contact us.",
+        "copyright":"Copyright 2024",
+        "terms-conditions":"Terms & Conditions",
+        "privacy-policy":"Privacy Policy",
     },
     no: {
         // NAV ITEMS
@@ -293,6 +298,12 @@ export const translations = {
 
         "monthly-saving":"6 120kr månedlig",
         "annual-saving":"73 440kr årlig",
+
+        // FOOTER
+        "contact-us":"Har du spørsmål? <br />Ta gjerne kontakt med oss.",
+        "copyright":"Opphavsrett 2024",
+        "terms-conditions":"Vilkår & Betingelser",
+        "privacy-policy":"Personvernerklæring",
 
     },
 };

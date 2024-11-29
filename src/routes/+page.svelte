@@ -13,6 +13,8 @@
 	import booking from '$lib/images/booking.png';
 	import bend from '$lib/images/bend.svg';
 
+	import characterFunnel from '$lib/images/character-funnel.png';
+
 	import bgTexture from '$lib/images/bg-texture.png';
 	import reviwerOne from '$lib/images/reviewerOne.png';
 	import reviwerTwo from '$lib/images/reviewerTwo.png';
@@ -23,13 +25,19 @@
 	import BlueArrow from '$lib/images/blue-arrow.svelte';
 	import Button from '../components/UiElements/button.svelte';
 	import ReviewBubble from '../components/UiElements/ReviewBubble.svelte';
-	import { onMount } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 	import ReviewCarousel from '../components/UiElements/ReviewCarousel.svelte';
 	import StepCard from '../components/UiElements/StepCard.svelte';
 	import Faq from '../components/UiElements/Faq.svelte';
-	import Comparison from '../components/UiElements/ComparisonCard.svelte';
 	import ComparisonCards from '../components/UiElements/ComparisonCards.svelte';
 	import Toggle from '../components/UiElements/toggle.svelte';
+	import Lenis from 'lenis';
+	import 'lenis/dist/lenis.css';
+	import MobileReviewCarousel from '../components/UiElements/MobileReviewCarousel.svelte';
+
+	let annualPrice = false;
+	let lenis: Lenis;
+
 	const reviews = [
 		{ imageSrc: reviwerOne, reviewKey: 'reviewOne' },
 		{ imageSrc: reviwerTwo, reviewKey: 'reviewTwo' },
@@ -59,14 +67,6 @@
 				| { bottom: string; left: string; top?: undefined; right?: undefined }
 		  )[]
 		| (ArrayLike<unknown> | { [s: string]: unknown })[];
-
-	onMount(() => {
-		// Randomly select a set of positions
-		selectedPositions = positionSets[Math.floor(Math.random() * positionSets.length)];
-	});
-
-	let annualPrice = false;
-
 	function getSavings(annualPrice: boolean) {
 		switch (annualPrice) {
 			case false:
@@ -77,8 +77,44 @@
 				return null;
 		}
 	}
+	onMount(() => {
+		// Randomly select a set of positions
+		selectedPositions = positionSets[Math.floor(Math.random() * positionSets.length)];
+
+		lenis = new Lenis({
+			duration: 1.3,
+			easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+			// direction: 'vertical',
+			// gestureDirection: 'vertical',
+			// smooth: true,
+			// mouseMultiplier: 1,
+			// smoothTouch: false,
+			touchMultiplier: 2,
+			infinite: false
+		});
+
+		function raf(time: any) {
+			lenis.raf(time);
+			requestAnimationFrame(raf);
+		}
+
+		requestAnimationFrame(raf);
+
+		// lenis.on('scroll', (e) => {
+		// 	console.log(e);
+		// });
+	});
+
+	onDestroy(() => {
+		if (lenis) {
+			lenis.destroy();
+		}
+	});
 </script>
 
+<svelte:head>
+	<script src="https://unpkg.com/lenis@1.1.17/dist/lenis.min.js"></script>
+</svelte:head>
 <MediaQuery query="(min-width: 1000px)" let:matches>
 	{#if matches}
 		<div class="wrapper" transition:fade={{ delay: 0, duration: 500 }}>
@@ -363,9 +399,25 @@
 					<div class="mobile-container">
 						<section class="hero-section">
 							<div class="top">
-								{@html $t('headline')}
+								<h1>{@html $t('headline')}</h1>
 							</div>
-							<div class="bottom">{@html $t('sub-headline-mobile')}</div>
+							<div class="bottom">
+								<p>{@html $t('sub-headline-mobile')}</p>
+								<div class="reviewers">
+									<ReviewBubble
+										imageSrc={reviews.at(0)?.imageSrc}
+										review={$t(reviews.at(0)?.reviewKey)}
+									/>
+									<ReviewBubble
+										imageSrc={reviews.at(1)?.imageSrc}
+										review={$t(reviews.at(1)?.reviewKey)}
+									/>
+									<ReviewBubble
+										imageSrc={reviews.at(2)?.imageSrc}
+										review={$t(reviews.at(2)?.reviewKey)}
+									/>
+								</div>
+							</div>
 
 							<div class="cta">
 								<div class="button">
@@ -377,7 +429,150 @@
 							<video src="/videos/dashboard.mp4" autoplay loop muted playsinline class="video"
 							></video>
 						</section>
-						<section class="process-section"></section>
+						<section class="process-section">
+							<div class="title"><h1>{@html $t('process-title')}</h1></div>
+							<div class="text"><p>{@html $t('process-subtitle')}</p></div>
+							<div class="illustration"><img src={characterFunnel} alt="" /></div>
+						</section>
+						<section class="review-section">
+							<div class="stats">
+								<ul>
+									<li>
+										<h1>2000+</h1>
+										<p>Leads Generated</p>
+									</li>
+									<li>
+										<h1>10+</h1>
+										<p>Happy Customers</p>
+									</li>
+									<li>
+										<h1>10+</h1>
+										<p>Successful Projects</p>
+									</li>
+								</ul>
+							</div>
+							<div class="review-carousel">
+								<MobileReviewCarousel />
+							</div>
+						</section>
+
+						<section class="function-ads">
+							<div class="container">
+								<div class="title">
+									<div class="tag">{@html $t('function-ads-tag')}</div>
+									<div class="title">{@html $t('function-ads-title')}</div>
+								</div>
+								<div class="content">
+									<div class="text">{@html $t('function-ads-text')}</div>
+									<img src={characterAds} alt="Character holding google ads logo" />
+								</div>
+							</div>
+							<Button />
+						</section>
+						<section class="function-landingpage">
+							<div class="content">
+								<div class="text-container">
+									<div class="tag">{@html $t('function-landing-tag')}</div>
+									<div class="title">{@html $t('function-landing-title')}</div>
+									<div class="text">{@html $t('function-landing-text')}</div>
+								</div>
+								<div class="image">
+									<img src={landingpage} alt="Mockups of landingpages" />
+								</div>
+							</div>
+							<Button />
+						</section>
+						<section class="function-booking">
+							<div class="bend">
+								<img src={bend} alt="background illustration" />
+							</div>
+							<div class="content">
+								<div class="text-container">
+									<div class="tag">{@html $t('function-booking-tag')}</div>
+									<div class="title">{@html $t('function-booking-title')}</div>
+									<div class="text">{@html $t('function-booking-text')}</div>
+								</div>
+								<div class="image">
+									<img src={booking} alt="Device mockups for booking page" />
+								</div>
+							</div>
+							<Button />
+						</section>
+
+						<section class="comparison-section">
+							<h1>{@html $t('features-title')}</h1>
+							<ComparisonCards />
+							<div class="savings-section">
+								<div class="toggle">
+									<p>{@html $t('monthly')}</p>
+									<Toggle bind:annualPrice />
+									<p>{@html $t('annual')}</p>
+								</div>
+								<div class="saving-amount">
+									<p>
+										{@html $t('save')}
+
+										<span class="highlight-blue">{getSavings(annualPrice)}</span>
+
+										{@html $t('with-brightpath')}
+									</p>
+								</div>
+							</div>
+							<Button />
+						</section>
+
+						<section class="function-ads">
+							<div class="container">
+								<div class="title">
+									<div class="tag">{@html $t('function-invoice-tag')}</div>
+									<div class="title">{@html $t('function-invoice-title')}</div>
+								</div>
+								<div class="content">
+									<div class="text">{@html $t('function-invoice-text')}</div>
+									<div class="image"></div>
+								</div>
+							</div>
+							<Button />
+						</section>
+
+						<!--<section class="steps-section">
+							<div class="text">
+								<div class="title">{@html $t('steps-title')}</div>
+								<div class="subtitle">{@html $t('steps-subtitle')}</div>
+							</div>
+							<div class="steps">
+								<StepCard number="1" title={$t('step-one-title')} text={$t('step-one-text')} />
+								<StepCard number="2" title={$t('step-two-title')} text={$t('step-two-text')} />
+								<StepCard number="3" title={$t('step-three-title')} text={$t('step-three-text')} />
+							</div>
+							<div class="cta">
+								<Button link="https://booking.brightpath.studio/" />
+							</div>
+						</section>
+
+						<section class="faq-section">
+							<div class="title">{@html $t('faq-title')}</div>
+							<Faq />
+						</section>
+
+						<section class="ready-section">
+							<div class="back">
+								<img src={bgWaves} alt="Abstract illustration" />
+							</div>
+							<div class="front">
+								<div class="container">
+									<div class="title">{@html $t('cta-title')}</div>
+									<div class="text">
+										<p>
+											{@html $t('cta-text')}
+										</p>
+									</div>
+									<div class="button">
+										<Button />
+									</div>
+								</div>
+							</div>
+						</section> -->
 					</div>
 				</div>
 			{/key}
@@ -861,18 +1056,19 @@
 						font-size: var(--fs-700);
 						font-variation-settings: 'wght' 600;
 						display: flex;
+						justify-content: center;
+						align-items: center;
 						width: 100%;
 					}
 					.text {
 						display: flex;
 						justify-content: center;
-
 						width: 100%;
 						font-size: var(--fs-600);
 						font-weight: 500;
 
 						p {
-							width: 30ch;
+							width: 50ch;
 							text-align: center;
 						}
 					}
@@ -895,6 +1091,36 @@
 	}
 
 	.mobile-container {
+		font-family: 'Roundo';
+		// :global(.highlight-blue),
+		// :global(.highlight-red) {
+		// 	color: var(--white);
+		// 	font-weight: 700;
+		// 	font-size: calc(var(--mfs-400) + 2px);
+		// 	&::selection {
+		// 		background: rgba(0, 123, 255, 0.2); /* Semi-transparent blue */
+		// 		color: #000; /* Black text for contrast */
+		// 		text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5); /* Subtle white shadow for depth */
+		// 	}
+		// }
+		:global(.highlight-blue) {
+			color: var(--blue-600);
+			font-weight: 600;
+			&::selection {
+				background: rgba(0, 123, 255, 0.2); /* Semi-transparent blue */
+				color: #000; /* Black text for contrast */
+				text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5); /* Subtle white shadow for depth */
+			}
+		}
+		:global(.highlight-red) {
+			color: #9c0000;
+			font-weight: 600;
+			&::selection {
+				background: rgba(0, 123, 255, 0.2); /* Semi-transparent blue */
+				color: #000; /* Black text for contrast */
+				text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5); /* Subtle white shadow for depth */
+			}
+		}
 		.hero-section {
 			width: 90%;
 			margin: 120px auto 100px auto;
@@ -902,26 +1128,38 @@
 			background-image: radial-gradient(#dbdbdb 0.9px, #fdfdfd 0.9px);
 			background-size: 25px 25px;
 
-			font-family: 'Roundo';
-
 			.top {
 				width: 100%;
 				margin: auto;
-				font-size: var(--fs-600);
-				font-weight: 600;
-				text-transform: capitalize;
-				text-align: center;
-				position: relative;
-			}
-			.bottom {
-				width: 90%;
-				margin: 50px 0;
-				color: var(--blue-600);
-				font-size: var(--fs-400);
-				font-weight: 600;
-				letter-spacing: 1px;
+
 				text-transform: capitalize;
 				text-align: start;
+				position: relative;
+				h1 {
+					font-size: var(--mfs-600);
+					font-weight: 600;
+				}
+			}
+			.bottom {
+				width: 100%;
+				margin: 50px 0;
+				display: flex;
+
+				p {
+					font-weight: 500;
+					font-size: var(--mfs-500);
+					color: var(--blue-600);
+
+					letter-spacing: 1px;
+					text-transform: capitalize;
+					text-align: start;
+					display: flex;
+				}
+				.reviewers {
+					justify-content: center;
+					align-items: center;
+					display: flex;
+				}
 			}
 			.cta {
 				display: flex;
@@ -937,6 +1175,272 @@
 				max-width: 100%;
 				border-radius: 10px;
 				box-shadow: 4px 6px 0 0 rgba(0, 0, 0, 0.6);
+			}
+		}
+		.process-section {
+			margin: 100px 0 0 0;
+			background-color: var(--blue-700);
+			width: 100%;
+			padding-bottom: clamp(12.5rem, 6.2396rem + 25.0417vw, 21.875rem);
+			position: relative;
+
+			display: flex;
+			flex-direction: column;
+
+			color: var(--white);
+
+			.title {
+				width: 100%;
+				text-align: center;
+				padding: 20px;
+				h1 {
+					font-weight: 500;
+					font-size: var(--mfs-600);
+				}
+			}
+			.text {
+				width: 100%;
+				text-align: center;
+				display: flex;
+				justify-content: center;
+				p {
+					max-width: 40ch;
+					font-size: var(--mfs-400);
+				}
+			}
+			.illustration {
+				position: absolute;
+				top: clamp(9.375rem, 5.2014rem + 16.6945vw, 15.625rem);
+				width: clamp(20rem, 12.4875rem + 30.0501vw, 31.25rem);
+				left: 50%;
+				transform: translateX(-50%);
+				img {
+					max-width: 100%;
+					max-height: 100%;
+				}
+			}
+		}
+		.review-section {
+			margin-bottom: 50px;
+			padding: 25px 0;
+			background-color: var(--blue-300);
+			.stats {
+				ul {
+					font-family: 'Sfpro';
+					padding-top: clamp(6.25rem, 2.0764rem + 16.6945vw, 12.5rem);
+					display: flex;
+					align-items: center;
+					justify-content: space-evenly;
+					color: var(--grey);
+					li {
+						width: 10ch;
+						margin: 10px 0;
+						list-style-type: none;
+						h1 {
+							text-align: center;
+							font-weight: 600;
+							font-size: var(--mfs-600);
+						}
+						p {
+							text-align: center;
+						}
+					}
+				}
+			}
+			.review-carousel {
+				margin-top: 50px;
+				width: 100%;
+			}
+		}
+
+		.function-ads {
+			margin: 100px 0;
+			max-width: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			.container {
+				width: 90%;
+				margin: auto;
+				display: flex;
+				flex-direction: column;
+
+				.title {
+					:global(.highlight-blue) {
+						color: var(--blue-500);
+						font-weight: 500;
+						font-size: var(--mfs-600);
+					}
+					.tag {
+						font-size: var(--mfs-400);
+						color: var(--grey);
+					}
+					.title {
+						font-size: var(--mfs-600);
+					}
+				}
+				.content {
+					display: flex;
+					justify-content: center;
+					.text {
+						font-size: var(--mfs-400);
+						font-weight: 500;
+						margin: 24px 0;
+						flex: 1;
+					}
+					img {
+						flex: 1;
+						max-height: 100%;
+						max-width: 50%;
+					}
+				}
+			}
+		}
+
+		.function-landingpage {
+			margin: 100px 0;
+			position: relative;
+			z-index: 5;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			.content {
+				width: 90%;
+				margin: auto;
+				display: flex;
+				gap: 2rem;
+				display: flex;
+				flex-direction: column;
+				.text-container {
+					flex: 1;
+
+					:global(.highlight-blue) {
+						color: var(--blue-500);
+						font-weight: 500;
+						font-size: var(--mfs-600);
+					}
+					.tag {
+						font-size: var(--fs-500);
+						color: var(--grey);
+					}
+					.title {
+						font-size: var(--mfs-600);
+					}
+					.text {
+						font-size: var(--fs-500);
+						font-weight: 500;
+						margin: 24px 0 0 0;
+					}
+				}
+				.image {
+					display: flex;
+					flex: 1;
+					justify-content: center;
+					margin: 24px 0;
+					img {
+						max-width: 100%;
+						border-radius: 25px;
+						box-shadow: 4px 4px 12px 0 rgba(0, 0, 0, 0.25);
+					}
+				}
+			}
+		}
+
+		.function-booking {
+			margin: 150px 0;
+			position: relative;
+			width: 100%;
+			overflow-x: clip;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			.bend {
+				top: -5%;
+				width: 100%;
+				height: 200%;
+				position: absolute;
+				z-index: 0;
+				img {
+					min-width: 100%;
+				}
+			}
+			.content {
+				position: relative;
+				width: 90%;
+				margin: 0 auto 24px auto;
+				display: flex;
+				flex-direction: column;
+				gap: 2rem;
+				.text-container {
+					flex: 1;
+
+					:global(.highlight-blue) {
+						color: var(--blue-500);
+						font-weight: 500;
+						font-size: var(--mfs-600);
+					}
+					.tag {
+						font-size: var(--mfs-500);
+						color: var(--grey);
+					}
+					.title {
+						font-size: var(--mfs-600);
+					}
+					.text {
+						font-size: var(--mfs-500);
+						font-weight: 500;
+						margin: 24px 0;
+					}
+				}
+				.image {
+					display: flex;
+					flex: 1;
+					justify-content: center;
+					img {
+						max-width: 100%;
+						border-radius: 25px;
+					}
+				}
+			}
+		}
+
+		.comparison-section {
+			margin-bottom: 50px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			h1 {
+				font-size: var(--mfs-600);
+				font-variation-settings: 'wght' 600;
+				width: fit-content;
+				margin: auto;
+				text-align: center;
+				text-transform: capitalize;
+			}
+			.savings-section {
+				margin: 5px;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				.toggle {
+					display: flex;
+					p {
+						font-weight: 600;
+						font-size: var(--fs-600);
+						margin: 0 15px;
+					}
+				}
+				.saving-amount {
+					p {
+						text-align: center;
+						font-weight: 500;
+						font-size: var(--mfs-600);
+					}
+				}
 			}
 		}
 	}

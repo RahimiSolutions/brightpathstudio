@@ -1,39 +1,45 @@
 <script>
 	import bgFooter from '$lib/images/footerBg.png';
 	import logoFooter from '$lib/images/footer-logo.svg';
+	import MediaQuery from '../MediaQuery.svelte';
+	import { t } from '$lib/text/i18n';
 </script>
 
-<footer>
-	<div class="contact-container">
-		<img src={bgFooter} alt="" />
-		<div class="content">
-			<div class="left"><h1>Any questions? <br />Feel free to contact us.</h1></div>
-			<div class="right">
-				<ul>
-					<li>contact@brightpath.com</li>
-					<li>+47 699 79 689</li>
-					<li>Oslo, Norway</li>
-				</ul>
+<MediaQuery query="(min-width: 1000px)" let:matches>
+	{#if matches}
+		<footer>
+			<div class="contact-container">
+				<img src={bgFooter} alt="" />
+				<div class="content">
+					<div class="left"><h1>{@html $t('contact-us')}</h1></div>
+					<div class="right">
+						<ul>
+							<li>contact@brightpath.com</li>
+							<li>+47 699 79 689</li>
+							<li>Oslo, Norway</li>
+						</ul>
+					</div>
+				</div>
 			</div>
-		</div>
-	</div>
-	<div class="social-container">
-		<div class="left">
-			<p>Copyright 2024</p>
-			<ul>
-				<li>Terms and Conditions</li>
-				<li>Privacy Policy</li>
-			</ul>
-		</div>
-		<div class="right">
-			<ul>
-				<li>Facebook</li>
-				<li>Instagram</li>
-			</ul>
-		</div>
-	</div>
-	<img class="logo-footer" src={logoFooter} alt="" />
-</footer>
+			<div class="social-container">
+				<div class="left">
+					<p>{@html $t('copyright')}</p>
+					<ul>
+						<li>{@html $t('terms-conditions')}</li>
+						<li>{@html $t('privacy-policy')}</li>
+					</ul>
+				</div>
+				<div class="right">
+					<ul>
+						<li>Facebook</li>
+						<li>Instagram</li>
+					</ul>
+				</div>
+			</div>
+			<img class="logo-footer" src={logoFooter} alt="" />
+		</footer>
+	{/if}
+</MediaQuery>
 
 <style lang="scss">
 	footer {

@@ -77,15 +77,20 @@
 
 		/* Smallest size, suitable for small print or tags */
 		--fs-300: clamp(0.8rem, 0.5826rem + 0.3478vw, 1rem);
+		--mfs-300: clamp(0.625rem, 0.5415rem + 0.3339vw, 0.75rem);
 
 		/* Small text, good for body copy or less emphasized text */
 		--fs-400: clamp(0.8rem, 0.7283rem + 0.4348vw, 1.25rem);
+		--mfs-350: clamp(0.75rem, 0.5831rem + 0.6678vw, 1rem);
+		--mfs-400: clamp(1rem, 0.8331rem + 0.6678vw, 1.25rem);
 
 		/* Medium text, good for body copy or subtitles */
 		--fs-500: clamp(1rem, 0.7283rem + 0.4348vw, 1.25rem);
+		--mfs-500: clamp(1.25rem, 1.0831rem + 0.6678vw, 1.5rem);
 
 		/* Large text, good for subtitles or small headings */
 		--fs-600: clamp(1.25rem, 0.9783rem + 0.4348vw, 1.5rem);
+		--mfs-600: clamp(2rem, 1.8331rem + 0.6678vw, 2.25rem);
 
 		/* Extra large, good for titles */
 		--fs-700: clamp(1.5rem, -0.6304rem + 2.6087vw, 2.5rem);
