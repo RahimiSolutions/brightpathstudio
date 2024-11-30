@@ -411,7 +411,7 @@
 	.mobile-card {
 		position: relative;
 		background: transparent; /* Background on the card is set to transparent */
-		width: 400px;
+		width:  clamp(23.125rem, 21.0382rem + 8.3472vw, 26.25rem);
 		height: 200px;
 		perspective: 1000px; /* Enables 3D effect */
 		cursor: pointer;

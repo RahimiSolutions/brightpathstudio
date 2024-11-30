@@ -535,7 +535,7 @@
 							<Button />
 						</section>
 
-						<!--<section class="steps-section">
+						<section class="steps-section">
 							<div class="text">
 								<div class="title">{@html $t('steps-title')}</div>
 								<div class="subtitle">{@html $t('steps-subtitle')}</div>
@@ -572,7 +572,7 @@
 									</div>
 								</div>
 							</div>
-						</section> -->
+						</section> 
 					</div>
 				</div>
 			{/key}
@@ -1440,6 +1440,122 @@
 						font-weight: 500;
 						font-size: var(--mfs-600);
 					}
+				}
+			}
+		}
+
+		.steps-section {
+			.text {
+				width: 90%;
+				margin: 0 auto 32px auto;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				.title {
+					font-variation-settings: 'wght' 600;
+					font-size: var(--mfs-600);
+					text-transform: capitalize;
+				}
+				.subtitle {
+					margin-top: 16px;
+					font-size: var(--mfs-400);
+					font-variation-settings: 'wght' 500;
+				}
+				.subtitle::first-letter {
+					text-transform: uppercase;
+				}
+			}
+			.steps {
+				display: flex;
+				flex-direction: column;
+				gap: 20px;
+				width: 90%;
+				margin: auto;
+			}
+			.cta {
+				width: fit-content;
+				margin: 50px auto 0 auto;
+			}
+		}
+
+		.faq-section {
+			margin:100px auto 0 auto;
+			width: 100%;
+			color: var(--white);
+			background-color: var(--blue-700);
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			.title {
+				font-variation-settings: 'wght' 600;
+				font-size: var(--mfs-600);
+				margin: 20px auto;
+			}
+		}
+
+		.ready-section {
+			position: relative;
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			.front {
+				// background: linear-gradient(155deg, rgba(116,171,251,1) 0%, rgba(253,253,253,1) 100%);
+				border-radius: 25px;
+				padding: 20px;
+				width: 90%;
+				// box-shadow: 5px 5px 12px 0 rgba(0, 0, 0, 0.25);
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translateX(-50%);
+
+				.container {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: space-evenly;
+					height: 100%;
+					width: 100%;
+					.title {
+						margin-bottom: 16px;
+						font-family: 'Roundo';
+						font-size: var(--mfs-600);
+						font-variation-settings: 'wght' 600;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						text-align: center;
+						width: 100%;
+					}
+					.text {
+						display: flex;
+						justify-content: center;
+						width: 100%;
+						font-size: var(--mfs-500);
+						font-weight: 500;
+
+						p {
+							text-align: center;
+						}
+					}
+					.button {
+						display: flex;
+						width: 100%;
+						padding: 5px;
+						margin: 16px 0;
+						justify-content: center;
+					}
+				}
+			}
+			.back {
+				width: 100%;
+				img {
+					min-width: 100%;
+					max-width: 100%;
 				}
 			}
 		}

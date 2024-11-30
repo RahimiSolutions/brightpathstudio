@@ -2,6 +2,7 @@
 	import { flip } from 'svelte/animate';
 	import ComparisonCard from './ComparisonCard.svelte';
 	import { t } from '$lib/text/i18n';
+	import MediaQuery from '../MediaQuery.svelte';
 
 	let bookingTitle = $t('booking-system-title');
 	let bookingDescription = $t('booking-system-description');
@@ -98,28 +99,58 @@
 	];
 </script>
 
-<div class="card-container">
-	{#each features as feature (feature.id)}
-		<div animate:flip={{ duration: 300 }}>
-			<ComparisonCard {feature} />
+<MediaQuery query="(min-width: 721px)" let:matches>
+	{#if matches}
+		<div class="card-container">
+			{#each features as feature (feature.id)}
+				<div animate:flip={{ duration: 300 }}>
+					<ComparisonCard {feature} />
+				</div>
+			{/each}
 		</div>
-	{/each}
-</div>
+	{/if}
+</MediaQuery>
+<MediaQuery query="(max-width: 720px)" let:matches>
+	{#if matches}
+		<div class="mobile-card-container">
+			{#each features as feature (feature.id)}
+				<div animate:flip={{ duration: 300 }}>
+					<ComparisonCard {feature} />
+				</div>
+			{/each}
+		</div>
+	{/if}
+</MediaQuery>
 
-<style>
+<style lang="scss">
 	.card-container {
 		width: 80%;
 		margin: 10px auto;
 		display: flex;
 		flex-wrap: wrap; /* Allow items to wrap onto the next line */
 		justify-content: center; /* Center items horizontally */
-		gap: 20px; /* Space between items */
+		gap: 20px;
 		padding: 20px;
-	}
 
-	.card-container > div {
-		margin-bottom: 20px;
-		flex: 0 0 calc(25% - 20px); /* Set each card to take up 25% of the container width minus gap */
-		box-sizing: border-box; /* Ensure padding is included in width calculation */
+		.card-container > div {
+			margin-bottom: 20px;
+			flex: 0 0 calc(25% - 20px); /* Set each card to take up 25% of the container width minus gap */
+			box-sizing: border-box; /* Ensure padding is included in width calculation */
+		}
+	}
+	.mobile-card-container {
+		width: 90%;
+		margin: 24px 0;
+		display: flex;
+		flex-direction: column;
+		justify-content: center; /* Center items horizontally */
+		align-items: center;
+		gap: 20px;
+
+		// .card-container > div {
+		// 	margin-bottom: 20px;
+		// 	flex: 0 0 calc(25% - 20px); /* Set each card to take up 25% of the container width minus gap */
+		// 	box-sizing: border-box; /* Ensure padding is included in width calculation */
+		// }
 	}
 </style>
