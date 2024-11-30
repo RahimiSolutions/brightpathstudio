@@ -1,6 +1,5 @@
 <script>
-	import bgFooter from '$lib/images/footerBg.png';
-	import logoFooter from '$lib/images/footer-logo.svg';
+	import logoFooter from '$lib/images/logo-nostudio.png';
 	import MediaQuery from '../MediaQuery.svelte';
 	import { t } from '$lib/text/i18n';
 </script>
@@ -8,32 +7,33 @@
 <MediaQuery query="(max-width: 999px)" let:matches>
 	{#if matches}
 		<footer>
-			<div class="contact-container">
-				<img src={bgFooter} alt="" />
-				<div class="content">
-					<div class="left"><h1>{@html $t('contact-us')}</h1></div>
+			<div class="container">
+				<div class="social-container">
+					<div class="left">
+						<p>{@html $t('copyright')}</p>
+						<ul>
+							<li>{@html $t('terms-conditions')}</li>
+							<li>{@html $t('privacy-policy')}</li>
+						</ul>
+					</div>
 					<div class="right">
 						<ul>
-							<li>contact@brightpath.com</li>
-							<li>+47 699 79 689</li>
-							<li>Oslo, Norway</li>
+							<li>Facebook</li>
+							<li>Instagram</li>
 						</ul>
 					</div>
 				</div>
-			</div>
-			<div class="social-container">
-				<div class="left">
-					<p>{@html $t('copyright')}</p>
-					<ul>
-						<li>{@html $t('terms-conditions')}</li>
-						<li>{@html $t('privacy-policy')}</li>
-					</ul>
-				</div>
-				<div class="right">
-					<ul>
-						<li>Facebook</li>
-						<li>Instagram</li>
-					</ul>
+				<div class="contact-container">
+					<div class="content">
+						<div class="left"><h1>{@html $t('contact-us')}</h1></div>
+						<div class="right">
+							<ul>
+								<li>contact@brightpath.com</li>
+								<li>+47 699 79 689</li>
+								<li>Oslo, Norway</li>
+							</ul>
+						</div>
+					</div>
 				</div>
 			</div>
 			<img class="logo-footer" src={logoFooter} alt="" />
@@ -51,93 +51,86 @@
 		width: 100%;
 		margin: 300px auto 0 auto;
 		position: relative;
-		background: linear-gradient(0deg, rgba(18, 79, 169, 1) 0%, rgba(253, 253, 253, 1) 100%);
+		border-radius: 50px 50px 0 0;
+		background: radial-gradient(
+			circle at 50% 150%,
+			hsl(216, 60%, 50%) 25%,
+			rgba(253, 253, 253, 1) 115%
+		);
+		box-shadow: 0px -4px 0px 0 rgba(0, 0, 0, 0.25);
 
-		.contact-container {
-			position: relative;
-			width: 90%;
-			margin: 0 auto;
-
-			img {
-				position: relative;
-				margin: auto;
-				z-index: 0;
-				border-radius: 10px;
-				max-width: 100%;
-				box-shadow: 2px 2px 12px 0 rgba(0, 0, 0, 0.5);
-			}
-			.content {
-				position: absolute;
-				top: 0;
+		.container {
+			padding: 25px 15px 0 15px;
+			display: flex;
+			margin-bottom: 24px;
+			.social-container {
+				flex: 1;
+				color: var(--blue-800);
 				font-family: 'Roundo';
-				color: var(--white);
 				display: flex;
-
-				width: 100%;
-				height: 100%;
-				justify-content: space-evenly;
-				align-items: center;
+				flex-direction: column;
+				justify-content: space-between;
 				.left {
-					h1 {
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					gap: 10px;
+					p {
 						font-size: var(--mfs-400);
 						font-weight: 500;
 					}
-				}
-				.right {
 					ul {
+						flex-direction: column;
+						display: flex;
+						gap: 4px;
 						li {
 							list-style-type: none;
-							font-size: var(--mfs-350);
-							margin: 10px 0;
+							font-size: var(--mfs-400);
+							font-weight: 500;
+						}
+					}
+				}
+				.right {
+					width: 100%;
+
+					ul {
+						flex-direction: column;
+						display: flex;
+						li {
+							list-style-type: none;
+							font-weight: 500;
+							font-size: var(--mfs-400);
+							margin: 4px 0;
 						}
 					}
 				}
 			}
-		}
-		.social-container {
-			width: 100%;
-			margin: 25px auto;
-			background-color: var(--blue-700);
-			box-shadow:
-				0 4px 8px 0 rgba(0, 0, 0, 0.25),
-				inset 0 2px 8px rgba(255, 255, 255, 0.25);
-			color: var(--white);
-			font-family: 'Roundo';
-			display: flex;
-			.left {
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				gap: 10px;
-				width: 100%;
-				height: 100%;
-				margin: 2.5%;
-				p {
-					font-size: var(--mfs-350);
-				}
-				ul {
+			.contact-container {
+				position: relative;
+				flex: 1;
+				.content {
+					font-family: 'Roundo';
+					color: var(--blue-800);
 					display: flex;
-					gap: 5%;
-					li {
-						list-style-type: none;
-						font-size: var(--mfs-350);
+					flex-direction: column;
+					justify-content: space-between;
+					align-items: start;
+					.left {
+						h1 {
+							font-size: var(--mfs-500);
+							font-weight: 500;
+						}
 					}
-				}
-			}
-			.right {
-				width: 100%;
-
-				ul {
-					align-items: center;
-					justify-content: end;
-					padding-right: 5%;
-					display: flex;
-					gap: 5%;
-					height: 100%;
-					li {
-						list-style-type: none;
-
-						font-size: var(--fs-400);
+					.right {
+						margin-top: 24px;
+						ul {
+							li {
+								list-style-type: none;
+								font-size: var(--mfs-400);
+								font-weight: 500;
+								margin: 4px 0;
+							}
+						}
 					}
 				}
 			}

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import MediaQuery from '../MediaQuery.svelte';
-	import LogoNavbar from '$lib/images/logo-nobg-nopad.png';
+	import LogoNavbar from '$lib/images/logo-nostudio.png';
 	import { slide } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 	import { language, locale, t } from '$lib/text/i18n';
