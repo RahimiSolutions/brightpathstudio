@@ -1,14 +1,21 @@
 <script>
 	import reviwerOne from '$lib/images/reviewerOne.png';
+	import reviwerTwo from '$lib/images/reviewerTwo.png';
+	import reviwerThree from '$lib/images/reviewerThree.png';
+	import { t } from '$lib/text/i18n';
+	let reviewOne = $t('reviewOne');
+	let reviewTwo = $t('reviewTwo');
+	let reviewThree = $t('reviewThree');
 
 	const reviews = [
-		{ name: '', username: '@', body: '', img: 'https://avatar.vercel.sh/jack' },
-		{ name: '', username: '@', body: '', img: 'https://avatar.vercel.sh/jack' },
-		{ name: '', username: '@', body: '', img: 'https://avatar.vercel.sh/jack' },
-		{ name: '', username: '@', body: '', img: 'https://avatar.vercel.sh/jack' },
-		{ name: '', username: '@', body: '', img: 'https://avatar.vercel.sh/jack' },
-		{ name: '', username: '@', body: '', img: 'https://avatar.vercel.sh/jack' }
+		{ name: 'John Doe', company: 'Nexis Solutions', body: reviewOne, img: reviwerOne },
+		{ name: 'Jane Smith', company: 'GreenLeaf Organics', body: reviewTwo, img: reviwerTwo },
+		{ name: 'Elliot Brown', company: 'UrbanNest Designs', body: reviewThree, img: reviwerThree },
+		{ name: 'John Doe', company: 'Nexis Solutions', body: reviewOne, img: reviwerOne },
+		{ name: 'Jane Smith', company: 'GreenLeaf Organics', body: reviewTwo, img: reviwerTwo },
+		{ name: 'Elliot Brown', company: 'UrbanNest Designs', body: reviewThree, img: reviwerThree }
 	];
+	
 
 	const firstRow = reviews.slice(0, reviews.length / 2);
 	const secondRow = reviews.slice(reviews.length / 2);
@@ -33,7 +40,7 @@
 						<img src={review.img} alt="" />
 						<div class="info">
 							<figcaption>{review.name}</figcaption>
-							<p>{review.username}</p>
+							<p>{review.company}</p>
 						</div>
 					</div>
 					<blockquote>{review.body}</blockquote>
@@ -50,7 +57,7 @@
 						<img src={review.img} alt="" />
 						<div class="info">
 							<figcaption>{review.name}</figcaption>
-							<p>{review.username}</p>
+							<p>{review.company}</p>
 						</div>
 					</div>
 					<blockquote>{review.body}</blockquote>
