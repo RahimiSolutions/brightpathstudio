@@ -7,6 +7,9 @@
 	import MobileFooter from '../components/footer/MobileFooter.svelte';
 	import Mobilenavbar from '../components/navbar/MobileNavbar.svelte';
 	import Footer from '../components/footer/Footer.svelte';
+	import { injectAnalytics } from '@vercel/analytics/sveltekit';
+	import { inject } from '@vercel/analytics';
+	inject({ mode: dev ? 'development' : 'production' });
 
 	var userLang = navigator.language;
 	// nb-NO
@@ -57,7 +60,7 @@
 <Navbar />
 <Mobilenavbar />
 <slot />
-<Footer/>
+<Footer />
 <MobileFooter />
 
 <style>
@@ -72,8 +75,8 @@
 		--white: #fdfdfd;
 		--black: #2a2a2a;
 		--grey: #5d5d5d;
-		--red:#9C0000;
-		--green:#08B90E;
+		--red: #9c0000;
+		--green: #08b90e;
 
 		/* Smallest size, suitable for small print or tags */
 		--fs-300: clamp(0.8rem, 0.5826rem + 0.3478vw, 1rem);
