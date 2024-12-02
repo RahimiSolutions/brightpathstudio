@@ -22,6 +22,12 @@ export const translations = {
         // PROCESS
         'process-title': "Here's what happens:",
         'process-subtitle': "We've combined cutting-edge technology with expert strategy to create a bright path from <span class='highlight-red'>customer acquisition</span> to <span class='highlight-blue'>conversion</span>.",
+        'leads-generated': "Leads Generated",
+        'happy-customers': "Happy Customers",
+        'successful-projects': "Successful Projects",
+        'leads-count': "2000+",
+        'customer-count': "5+",
+        'projects-count': "5+",
 
         // FUNNEL
         "funnel-one": "Google Ads",
@@ -99,11 +105,11 @@ export const translations = {
         "function-invoice-text": "Simplify invoicing with tools that let you send quotes, collect e-signatures, and automate payment follow-ups.<br/><br/>Free yourself to focus on growth.",
 
         // FEATURES
-        "features-title":"Replacing it all for a fraction of the price",
-        "monthly":"Monthly",
-        "annual":"Annual",
-        "save":"Save",
-        "with-brightpath":"with Brightpath",
+        "features-title": "Replacing it all for a fraction of the price",
+        "monthly": "Monthly",
+        "annual": "Annual",
+        "save": "Save",
+        "with-brightpath": "with Brightpath",
 
         "booking-system-title": "Booking System",
         "booking-system-description": "Effortlessly manage appointments and avoid scheduling conflicts",
@@ -133,25 +139,25 @@ export const translations = {
         "offers-esignatures-description": "Create, send, and track offers with secure e-signatures",
         "offers-esignatures-price": "25",
 
-        "replacing":"Replacing",
-        "flip-prompt":"Flip to see savings",
-        "others":"Others",
-        "cost-after":"Cost after",
-        "saved-after":"Saved after",
-        "year":"year",
-        "month":"month",
-        "included":"Included",
-        "usd-sign":"$",
-        "nok-sign":" ",
-        
-        "monthly-saving":"$612 monthly",
-        "annual-saving":"$7340 annually",
+        "replacing": "Replacing",
+        "flip-prompt": "Flip to see savings",
+        "others": "Others",
+        "cost-after": "Cost after",
+        "saved-after": "Saved after",
+        "year": "year",
+        "month": "month",
+        "included": "Included",
+        "usd-sign": "$",
+        "nok-sign": " ",
+
+        "monthly-saving": "$612 monthly",
+        "annual-saving": "$7340 annually",
 
         // FOOTER
-        "contact-us":"Any questions? <br />Feel free to contact us.",
-        "copyright":"Copyright 2024",
-        "terms-conditions":"Terms & Conditions",
-        "privacy-policy":"Privacy Policy",
+        "contact-us": "Any questions? <br />Feel free to contact us.",
+        "copyright": "Copyright 2024",
+        "terms-conditions": "Terms & Conditions",
+        "privacy-policy": "Privacy Policy",
     },
     no: {
         // NAV ITEMS
@@ -175,6 +181,12 @@ export const translations = {
         // PROCESS
         'process-title': "Dette skjer:",
         'process-subtitle': "Vi har skapt en lysende sti fra kundens første møte til siste signatur. Med <span class='highlight-red'>skreddersydd teknologi</span> og <span class='highlight-blue'>strategisk ekspertise</span>, viser vi veien til suksess for din bedrift.",
+        'leads-generated': "Leads Generert",
+        'happy-customers': "Førnøyde Kunder",
+        'successful-projects': "Vellykede Prosjekter",
+        'leads-count': "2000+",
+        'customer-count': "5+",
+        'projects-count': "5+",
 
         // FUNNEL
         "funnel-one": "Google Annonser",
@@ -251,11 +263,11 @@ export const translations = {
         "function-invoice-text": "Gjør faktureringen enkel! Send pristilbud, få e-signaturer og automatiser oppfølgingen av betalinger.<br/><br/> Med vårt system kan du fokusere på vekst, ikke papirarbeid.",
 
         // FEATURES
-        "features-title":"Erstatter alt for en brøkdel av prisen",
-        "monthly":"Månedlig",
-        "annual":"Årlig",
-        "save":"Spar",
-        "with-brightpath":"med Brightpath",
+        "features-title": "Erstatter alt for en brøkdel av prisen",
+        "monthly": "Månedlig",
+        "annual": "Årlig",
+        "save": "Spar",
+        "with-brightpath": "med Brightpath",
 
         "booking-system-title": "Bookingsystem",
         "booking-system-description": "Håndter avtaler enkelt og unngå dobbeltbookinger",
@@ -285,25 +297,25 @@ export const translations = {
         "offers-esignatures-description": "Lag, send og følg opp tilbud med sikre e-signaturer",
         "offers-esignatures-price": "250",
 
-        "replacing":"Erstatter",
-        "flip-prompt":"Snu for å se sparing",
-        "others":"Andre",
-        "cost-after":"Kostnad etter",
-        "saved-after":"Spart after",
-        "year":"år",
-        "month":"måned",
-        "included":"Inkludert",
-        "usd-sign":" ",
-        "nok-sign":"kr",
+        "replacing": "Erstatter",
+        "flip-prompt": "Snu for å se sparing",
+        "others": "Andre",
+        "cost-after": "Kostnad etter",
+        "saved-after": "Spart after",
+        "year": "år",
+        "month": "måned",
+        "included": "Inkludert",
+        "usd-sign": " ",
+        "nok-sign": "kr",
 
-        "monthly-saving":"6 120kr månedlig",
-        "annual-saving":"73 440kr årlig",
+        "monthly-saving": "6 120kr månedlig",
+        "annual-saving": "73 440kr årlig",
 
         // FOOTER
-        "contact-us":"Har du spørsmål? <br />Ta gjerne kontakt med oss.",
-        "copyright":"Opphavsrett 2024",
-        "terms-conditions":"Vilkår & Betingelser",
-        "privacy-policy":"Personvernerklæring",
+        "contact-us": "Har du spørsmål? <br />Ta gjerne kontakt med oss.",
+        "copyright": "Opphavsrett 2024",
+        "terms-conditions": "Vilkår & Betingelser",
+        "privacy-policy": "Personvernerklæring",
 
     },
 };

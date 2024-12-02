@@ -166,16 +166,16 @@
 							<div class="back">
 								<ul>
 									<li>
-										<h1>2000+</h1>
-										<p>Leads Generated</p>
+										<h1>{@html $t('leads-count')}</h1>
+										<p>{@html $t('leads-generated')}</p>
 									</li>
 									<li>
-										<h1>10+</h1>
-										<p>Happy Customers</p>
+										<h1>{@html $t('customer-count')}</h1>
+										<p>{@html $t('happy-customers')}</p>
 									</li>
 									<li>
-										<h1>5+</h1>
-										<p>Successful Projects</p>
+										<h1>{@html $t('projects-count')}</h1>
+										<p>{@html $t('successful-projects')}</p>
 									</li>
 								</ul>
 							</div>
@@ -265,7 +265,7 @@
 								</div>
 							</div>
 						</section>
-						<section class="review-section">
+						<section class="review-section" id="reviews">
 							<ReviewCarousel />
 						</section>
 
@@ -275,7 +275,7 @@
 									<div class="tag">{@html $t('function-ads-tag')}</div>
 									<div class="title">{@html $t('function-ads-title')}</div>
 									<div class="text">{@html $t('function-ads-text')}</div>
-									<Button />
+									<Button link="https://booking.brightpath.studio/" />
 								</div>
 								<div class="image">
 									<img src={characterAds} alt="Character holding google ads logo" />
@@ -291,7 +291,7 @@
 									<div class="tag">{@html $t('function-landing-tag')}</div>
 									<div class="title">{@html $t('function-landing-title')}</div>
 									<div class="text">{@html $t('function-landing-text')}</div>
-									<Button />
+									<Button link="https://booking.brightpath.studio/" />
 								</div>
 							</div>
 						</section>
@@ -304,7 +304,7 @@
 									<div class="tag">{@html $t('function-booking-tag')}</div>
 									<div class="title">{@html $t('function-booking-title')}</div>
 									<div class="text">{@html $t('function-booking-text')}</div>
-									<Button />
+									<Button link="https://booking.brightpath.studio/" />
 								</div>
 								<div class="image">
 									<img src={booking} alt="Device mockups for booking page" />
@@ -331,7 +331,7 @@
 									</p>
 								</div>
 							</div>
-							<Button />
+							<Button link="https://booking.brightpath.studio/" />
 						</section>
 
 						<section class="function-ads">
@@ -340,7 +340,7 @@
 									<div class="tag">{@html $t('function-invoice-tag')}</div>
 									<div class="title">{@html $t('function-invoice-title')}</div>
 									<div class="text">{@html $t('function-invoice-text')}</div>
-									<Button />
+									<Button link="https://booking.brightpath.studio/" />
 								</div>
 								<div class="image"></div>
 							</div>
@@ -379,7 +379,7 @@
 										</p>
 									</div>
 									<div class="button">
-										<Button />
+										<Button link="https://booking.brightpath.studio/" />
 									</div>
 								</div>
 							</div>
@@ -438,20 +438,20 @@
 							<div class="stats">
 								<ul>
 									<li>
-										<h1>2000+</h1>
-										<p>Leads Generated</p>
+										<h1>{@html $t('leads-count')}</h1>
+										<p>{@html $t('leads-generated')}</p>
 									</li>
 									<li>
-										<h1>10+</h1>
-										<p>Happy Customers</p>
+										<h1>{@html $t('customer-count')}</h1>
+										<p>{@html $t('happy-customers')}</p>
 									</li>
 									<li>
-										<h1>10+</h1>
-										<p>Successful Projects</p>
+										<h1>{@html $t('projects-count')}</h1>
+										<p>{@html $t('successful-projects')}</p>
 									</li>
 								</ul>
 							</div>
-							<div class="review-carousel">
+							<div class="review-carousel" id="reviews">
 								<MobileReviewCarousel />
 							</div>
 						</section>
@@ -467,7 +467,7 @@
 									<img src={characterAds} alt="Character holding google ads logo" />
 								</div>
 							</div>
-							<Button />
+							<Button link="https://booking.brightpath.studio/" />
 						</section>
 						<section class="function-landingpage">
 							<div class="content">
@@ -480,7 +480,7 @@
 									<img src={landingpage} alt="Mockups of landingpages" />
 								</div>
 							</div>
-							<Button />
+							<Button link="https://booking.brightpath.studio/" />
 						</section>
 						<section class="function-booking">
 							<div class="bend">
@@ -496,7 +496,7 @@
 									<img src={booking} alt="Device mockups for booking page" />
 								</div>
 							</div>
-							<Button />
+							<Button link="https://booking.brightpath.studio/" />
 						</section>
 
 						<section class="comparison-section">
@@ -518,7 +518,7 @@
 									</p>
 								</div>
 							</div>
-							<Button />
+							<Button link="https://booking.brightpath.studio/" />
 						</section>
 
 						<section class="function-ads">
@@ -532,7 +532,7 @@
 									<div class="image"></div>
 								</div>
 							</div>
-							<Button />
+							<Button link="https://booking.brightpath.studio/" />
 						</section>
 
 						<section class="steps-section">
@@ -568,7 +568,7 @@
 										</p>
 									</div>
 									<div class="button">
-										<Button />
+										<Button link="https://booking.brightpath.studio/" />
 									</div>
 								</div>
 							</div>
@@ -802,6 +802,7 @@
 			}
 		}
 		.review-section {
+			scroll-margin-top: 150px;
 			margin: 250px 0 150px 0;
 		}
 
@@ -1248,6 +1249,7 @@
 				}
 			}
 			.review-carousel {
+				scroll-margin-top: 250px;
 				margin-top: 50px;
 				width: 100%;
 			}

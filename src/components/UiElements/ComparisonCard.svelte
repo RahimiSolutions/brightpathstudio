@@ -220,6 +220,13 @@
 			padding: 20px;
 			box-sizing: border-box;
 
+			&:hover .cta:before {
+				width: 100%;
+				background: var(--blue-300);
+			}
+
+
+			
 			.title {
 				text-align: center;
 				margin-bottom: 8px;
@@ -411,7 +418,7 @@
 	.mobile-card {
 		position: relative;
 		background: transparent; /* Background on the card is set to transparent */
-		width:  clamp(23.125rem, 21.0382rem + 8.3472vw, 26.25rem);
+		width: clamp(23.125rem, 21.0382rem + 8.3472vw, 26.25rem);
 		height: 200px;
 		perspective: 1000px; /* Enables 3D effect */
 		cursor: pointer;

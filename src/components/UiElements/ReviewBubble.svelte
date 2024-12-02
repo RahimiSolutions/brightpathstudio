@@ -1,4 +1,5 @@
 <script>
+	import { goto } from '$app/navigation';
 	import MediaQuery from '../MediaQuery.svelte';
 
 	let { imageSrc = '', review = '' } = $props();
@@ -15,7 +16,13 @@
 			onmouseleave={() => (isHovered = false)}
 		>
 			<!-- Circular Image -->
-			<div class="profile-image">
+			<!-- svelte-ignore a11y_click_events_have_key_events -->
+			<div
+				class="profile-image"
+				onclick={() => {
+					goto('/#reviews');
+				}}
+			>
 				<img src={imageSrc} alt="Reviewer" />
 			</div>
 
@@ -32,12 +39,26 @@
 		<!-- svelte-ignore a11y_no_static_element_interactions -->
 		<div
 			class="mobile-review-card"
-			ontouchstart={() => (isHovered = true)}
-			ontouchend={() => (isHovered = false)}
+			ontouchstart={(e) => {
+				e.preventDefault();
+				isHovered = true;
+			}}
+			ontouchend={(e) => {
+				e.preventDefault();
+				isHovered = false;
+			}}
 		>
 			<!-- Circular Image -->
-			<div class="profile-image">
-				<img src={imageSrc} alt="Reviewer" />
+			<!-- svelte-ignore a11y_click_events_have_key_events -->
+			<div
+				class="profile-image"
+				onclick={(e) => {
+					e.preventDefault();
+					goto('/#reviews');
+				}}
+				ontouchstart={(e) => e.preventDefault()}
+			>
+				<img src={imageSrc} alt="Reviewer" ontouchstart={(e) => e.preventDefault()} />
 			</div>
 
 			<!-- Expandable Notification Badge -->
@@ -71,6 +92,7 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
+			cursor: pointer;
 
 			img {
 				width: 100%;
@@ -189,7 +211,7 @@
 				}
 			}
 
-			.review-text { 
+			.review-text {
 				opacity: 0;
 				transition: opacity 0.3s ease-in-out;
 				text-align: left;
