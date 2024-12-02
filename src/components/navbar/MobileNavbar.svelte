@@ -141,7 +141,7 @@
 			}
 			.mobile-nav-logo {
 				a {
-					height: 30px;
+					height: 20px;
 					display: flex;
 					align-items: center;
 					margin: 0 0 0 1em;

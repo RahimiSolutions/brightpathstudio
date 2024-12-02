@@ -1,4 +1,5 @@
 <script>
+	import { goto } from '$app/navigation';
 	import logo from '$lib/images/logo-nobg-nopad.png';
 	import { t } from '$lib/text/i18n';
 	import LanguagePicker from '../LanguagePicker.svelte';
@@ -10,7 +11,8 @@
 		<nav>
 			<div class="container">
 				<div class="left">
-					<img src={logo} alt="brightpath studio" />
+					<!-- svelte-ignore a11y_no_noninteractive_element_interactions a11y_click_events_have_key_events -->
+					<img src={logo} alt="brightpath studio" onclick={()=>{goto('/')}}>
 				</div>
 				<div class="right">
 					<a href="https://www.brightpath.studio">{@html $t('home')}</a>
