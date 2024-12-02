@@ -13,8 +13,8 @@
 					<img src={logo} alt="brightpath studio" />
 				</div>
 				<div class="right">
-					<a href="/">{@html $t('home')}</a>
-					<a href="https://checkout.brightpath.studio/">{@html $t('about')}</a>
+					<a href="https://www.brightpath.studio">{@html $t('home')}</a>
+					<a href="https://www.brightpath.studio/#about">{@html $t('about')}</a>
 					<a href="https://booking.brightpath.studio/">{@html $t('contact')}</a>
 				</div>
 			</div>

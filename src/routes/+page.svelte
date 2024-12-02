@@ -346,7 +346,7 @@
 							</div>
 						</section>
 
-						<section class="steps-section">
+						<section class="steps-section" id="about">
 							<div class="text">
 								<div class="title">{@html $t('steps-title')}</div>
 								<div class="subtitle">{@html $t('steps-subtitle')}</div>
@@ -535,7 +535,7 @@
 							<Button link="https://booking.brightpath.studio/" />
 						</section>
 
-						<section class="steps-section">
+						<section class="steps-section" id="about">
 							<div class="text">
 								<div class="title">{@html $t('steps-title')}</div>
 								<div class="subtitle">{@html $t('steps-subtitle')}</div>
@@ -976,6 +976,7 @@
 		}
 
 		.steps-section {
+			scroll-margin-top: 150px;
 			.text {
 				width: 80%;
 				margin: 0 auto 10vh auto;
@@ -1155,12 +1156,15 @@
 					text-transform: capitalize;
 					text-align: start;
 					display: flex;
+					width: 100%;
 				}
 				.reviewers {
 					justify-content: center;
 					align-items: center;
 					display: flex;
+					width: 100%;
 				}
+				
 			}
 			.cta {
 				display: flex;
@@ -1447,6 +1451,7 @@
 		}
 
 		.steps-section {
+			scroll-margin-top: 250px;
 			.text {
 				width: 90%;
 				margin: 0 auto 32px auto;

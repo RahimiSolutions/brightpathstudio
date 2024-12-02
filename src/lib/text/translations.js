@@ -155,7 +155,7 @@ export const translations = {
 
         // FOOTER
         "contact-us": "Any questions? <br />Feel free to contact us.",
-        "copyright": "Copyright 2024",
+        "copyright": "Copyright. All rights reserved © 2024",
         "terms-conditions": "Terms & Conditions",
         "privacy-policy": "Privacy Policy",
     },
@@ -313,7 +313,7 @@ export const translations = {
 
         // FOOTER
         "contact-us": "Har du spørsmål? <br />Ta gjerne kontakt med oss.",
-        "copyright": "Opphavsrett 2024",
+        "copyright": "Opphavsrett. Alle rettigheter forbeholdt © 2024",
         "terms-conditions": "Vilkår & Betingelser",
         "privacy-policy": "Personvernerklæring",
 

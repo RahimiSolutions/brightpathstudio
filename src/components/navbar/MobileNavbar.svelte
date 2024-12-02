@@ -49,7 +49,6 @@
 				style:height
 				transition:slide={{ delay: 100, duration: 300, easing: quintOut, axis: 'y' }}
 			>
-			
 				<div class="mobile-nav-closed">
 					<div class="mobile-nav-logo">
 						<a href="/"><img src={LogoNavbar} alt="BrighPath" /></a>
@@ -71,9 +70,15 @@
 				</div>
 				{#if !closed}
 					<div class="mobile-nav-sidebar-content">
-						<p><a href="/#" on:click={handleMenuChoice}>{@html $t('home')}</a></p>
 						<p>
-							<a href="/#" on:click={handleMenuChoice}>{@html $t('about')}</a>
+							<a href="https://www.brightpath.studio" on:click={handleMenuChoice}
+								>{@html $t('home')}</a
+							>
+						</p>
+						<p>
+							<a href="https://www.brightpath.studio/#about" on:click={handleMenuChoice}
+								>{@html $t('about')}</a
+							>
 						</p>
 						<p>
 							<a href="https://booking.brightpath.studio/" on:click={handleMenuChoice}
@@ -133,7 +138,6 @@
 				display: flex;
 				justify-content: center;
 				align-items: center;
-				
 			}
 			.mobile-nav-logo {
 				a {

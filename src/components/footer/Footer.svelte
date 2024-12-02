@@ -3,6 +3,11 @@
 	import logoFooter from '$lib/images/footer-logo.svg';
 	import MediaQuery from '../MediaQuery.svelte';
 	import { t } from '$lib/text/i18n';
+	import Facebook from '$lib/icons/facebook.svelte';
+	import Instagram from '$lib/icons/instagram.svelte';
+	import Envelope from '$lib/icons/envelope.svelte';
+	import Phone from '$lib/icons/phone.svelte';
+	import Location from '$lib/icons/location.svelte';
 </script>
 
 <MediaQuery query="(min-width: 1000px)" let:matches>
@@ -14,9 +19,18 @@
 					<div class="left"><h1>{@html $t('contact-us')}</h1></div>
 					<div class="right">
 						<ul>
-							<li>contact@brightpath.com</li>
-							<li>+47 699 79 689</li>
-							<li>Oslo, Norway</li>
+							<li>
+								<Envelope />
+								<p>contact@brightpath.com</p>
+							</li>
+							<li>
+								<Phone />
+								<p>+47 699 79 689</p>
+							</li>
+							<li>
+								<Location />
+								<p>Oslo, Norway</p>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -31,8 +45,8 @@
 				</div>
 				<div class="right">
 					<ul>
-						<li>Facebook</li>
-						<li>Instagram</li>
+						<li><a href="https://www.facebook.com/"><Facebook width="36" fill="#fff" /></a></li>
+						<li><a href="https://www.instagram.com/"><Instagram width="36" fill="#fff" /></a></li>
 					</ul>
 				</div>
 			</div>
@@ -84,8 +98,12 @@
 					ul {
 						li {
 							list-style-type: none;
-							font-size: var(--fs-400);
-							margin: 10px 0;
+							display: flex;
+							gap: 10px;
+							margin: 16px 0;
+							p {
+								font-size: var(--fs-400);
+							}
 						}
 					}
 				}

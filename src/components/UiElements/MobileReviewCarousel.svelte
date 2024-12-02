@@ -3,25 +3,19 @@
 	import { onMount } from 'svelte';
 	import Chevron from '$lib/icons/Chevron.svelte';
 
-	let reviews = [
-		{
-			image: 'https://avatar.vercel.sh/jack',
-			text: 'This is a fantastic service! Highly recommend.',
-			name: 'John Doe',
-			company: 'Doe Inc.'
-		},
-		{
-			image: 'https://avatar.vercel.sh/jack',
-			text: 'Amazing experience. Would definitely use again!',
-			name: 'Jane Smith',
-			company: 'Smith & Co.'
-		},
-		{
-			image: 'https://avatar.vercel.sh/jack',
-			text: 'Very professional and outstanding results.',
-			name: 'Sarah Brown',
-			company: 'Brown Ltd.'
-		}
+	import reviwerOne from '$lib/images/reviewerOne.png';
+	import reviwerTwo from '$lib/images/reviewerTwo.png';
+	import reviwerThree from '$lib/images/reviewerThree.png';
+	import { t } from '$lib/text/i18n';
+	let reviewOne = $t('reviewOne');
+	let reviewTwo = $t('reviewTwo');
+	let reviewThree = $t('reviewThree');
+
+	const reviews = [
+		{ image: reviwerOne, text: reviewOne, name: 'John Doe', company: 'Doe Inc.' },
+		{ image: reviwerTwo, text: reviewTwo, name: 'Jane Smith', company: 'Smith & Co.' },
+		{ image: reviwerThree, text: reviewThree, name: 'Elliot Brown', company: 'Brown Ltd.' }
+		// Add more reviews as needed
 	];
 
 	let currentIndex = 0;
@@ -130,13 +124,13 @@
 					flex-direction: column;
 					justify-content: space-between;
 					padding-left: 20px;
-                    gap: 20px;
+					gap: 20px;
 
 					.review-text {
 						font-size: var(--fs-500);
 						color: var(--font-color);
-                        font-weight: 500;
-                        width: 100%;
+						font-weight: 500;
+						width: 100%;
 					}
 
 					.reviewer-info {
@@ -144,13 +138,13 @@
 
 						.name {
 							font-size: var(--fs-600);
-                            font-weight: 600;
+							font-weight: 600;
 							color: var(--blue-600);
 						}
 
 						.company {
 							font-size: var(--fs-400);
-                            font-weight: 500;
+							font-weight: 500;
 						}
 					}
 				}

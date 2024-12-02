@@ -1,5 +1,6 @@
 <script>
 	import { goto } from '$app/navigation';
+	import { preventDefault } from 'svelte/legacy';
 	import MediaQuery from '../MediaQuery.svelte';
 
 	let { imageSrc = '', review = '' } = $props();
@@ -37,33 +38,16 @@
 <MediaQuery query="(max-width: 999px)" let:matches>
 	{#if matches}
 		<!-- svelte-ignore a11y_no_static_element_interactions -->
-		<div
-			class="mobile-review-card"
-			ontouchstart={(e) => {
-				e.preventDefault();
-				isHovered = true;
-			}}
-			ontouchend={(e) => {
-				e.preventDefault();
-				isHovered = false;
-			}}
-		>
+		<div class="mobile-review-card">
 			<!-- Circular Image -->
 			<!-- svelte-ignore a11y_click_events_have_key_events -->
 			<div
 				class="profile-image"
-				onclick={(e) => {
-					e.preventDefault();
+				onclick={() => {
 					goto('/#reviews');
 				}}
-				ontouchstart={(e) => e.preventDefault()}
 			>
-				<img src={imageSrc} alt="Reviewer" ontouchstart={(e) => e.preventDefault()} />
-			</div>
-
-			<!-- Expandable Notification Badge -->
-			<div class="notification-badge" class:expanded={isHovered}>
-				<p class="review-text">{review}</p>
+				<img src={imageSrc} alt="Reviewer" />
 			</div>
 		</div>
 	{/if}
@@ -175,54 +159,6 @@
 				object-fit: cover;
 				border-radius: 50%;
 				transition: transform 0.3s ease-in-out;
-			}
-		}
-
-		.notification-badge {
-			position: absolute;
-			top: 2.5px;
-			right: 2.5px;
-			width: 10px;
-			height: 10px;
-			background-color: var(--blue-600);
-			border-radius: 12px;
-			border: 1px solid white;
-			cursor: pointer;
-			transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-			overflow: hidden;
-			display: flex;
-			align-items: center;
-			justify-content: flex-start;
-			padding: 0;
-
-			&.expanded {
-				width: 200px;
-				height: auto;
-				min-height: 50px;
-				top: -50px;
-				right: -185px;
-				padding: 10px;
-				backdrop-filter: blur(10px);
-				box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-
-				.review-text {
-					opacity: 1;
-					white-space: normal;
-				}
-			}
-
-			.review-text {
-				opacity: 0;
-				transition: opacity 0.3s ease-in-out;
-				text-align: left;
-				margin: 0;
-				width: 100%;
-				white-space: nowrap;
-				overflow: hidden;
-				text-overflow: ellipsis;
-				font-family: 'Sfpro';
-				font-size: var(--fs-400);
-				color: var(--white);
 			}
 		}
 	}
