@@ -22,6 +22,7 @@ export const translations = {
         // PROCESS
         'process-title': "Here's what happens:",
         'process-subtitle': "We've combined cutting-edge technology with expert strategy to create a bright path from <span class='highlight-red'>customer acquisition</span> to <span class='highlight-blue'>conversion</span>.",
+        'process-subtitle-mobile': "We've combined cutting-edge technology with expert strategy to create a bright path from <span class='highlight-white'>customer acquisition</span> to <span class='highlight-white'>conversion</span>.",
         'leads-generated': "Leads Generated",
         'happy-customers': "Happy Customers",
         'successful-projects': "Successful Projects",
@@ -181,6 +182,7 @@ export const translations = {
         // PROCESS
         'process-title': "Dette skjer:",
         'process-subtitle': "Vi har skapt en lysende sti fra kundens første møte til siste signatur. Med <span class='highlight-red'>skreddersydd teknologi</span> og <span class='highlight-blue'>strategisk ekspertise</span>, viser vi veien til suksess for din bedrift.",
+        'process-subtitle-mobile': "Vi har skapt en lysende sti fra kundens første møte til siste signatur. Med <span class='highlight-white'>skreddersydd teknologi</span> og <span class='highlight-white'>strategisk ekspertise</span>, viser vi veien til suksess for din bedrift.",
         'leads-generated': "Leads Generert",
         'happy-customers': "Førnøyde Kunder",
         'successful-projects': "Vellykede Prosjekter",

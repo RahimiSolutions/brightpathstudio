@@ -431,7 +431,7 @@
 						</section>
 						<section class="process-section">
 							<div class="title"><h1>{@html $t('process-title')}</h1></div>
-							<div class="text"><p>{@html $t('process-subtitle')}</p></div>
+							<div class="text"><p>{@html $t('process-subtitle-mobile')}</p></div>
 							<div class="illustration"><img src={characterFunnel} alt="" /></div>
 						</section>
 						<section class="review-section">
@@ -572,7 +572,7 @@
 									</div>
 								</div>
 							</div>
-						</section> 
+						</section>
 					</div>
 				</div>
 			{/key}
@@ -1094,17 +1094,16 @@
 
 	.mobile-container {
 		font-family: 'Roundo';
-		// :global(.highlight-blue),
-		// :global(.highlight-red) {
-		// 	color: var(--white);
-		// 	font-weight: 700;
-		// 	font-size: calc(var(--mfs-400) + 2px);
-		// 	&::selection {
-		// 		background: rgba(0, 123, 255, 0.2); /* Semi-transparent blue */
-		// 		color: #000; /* Black text for contrast */
-		// 		text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5); /* Subtle white shadow for depth */
-		// 	}
-		// }
+		:global(.highlight-white) {
+			color: var(--white);
+			font-weight: 600;
+			font-size: calc(var(--mfs-400) + 3px);
+			&::selection {
+				background: rgba(0, 123, 255, 0.2); /* Semi-transparent blue */
+				color: #000; /* Black text for contrast */
+				text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5); /* Subtle white shadow for depth */
+			}
+		}
 		:global(.highlight-blue) {
 			color: var(--blue-600);
 			font-weight: 600;
@@ -1123,6 +1122,7 @@
 				text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5); /* Subtle white shadow for depth */
 			}
 		}
+
 		.hero-section {
 			width: 90%;
 			margin: 120px auto 100px auto;
@@ -1164,7 +1164,6 @@
 					display: flex;
 					width: 100%;
 				}
-				
 			}
 			.cta {
 				display: flex;
@@ -1486,7 +1485,7 @@
 		}
 
 		.faq-section {
-			margin:100px auto 0 auto;
+			margin: 100px auto 0 auto;
 			width: 100%;
 			color: var(--white);
 			background-color: var(--blue-700);
