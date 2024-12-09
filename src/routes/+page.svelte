@@ -34,9 +34,27 @@
 	import Lenis from 'lenis';
 	import 'lenis/dist/lenis.css';
 	import MobileReviewCarousel from '../components/UiElements/MobileReviewCarousel.svelte';
+	import gsap from 'gsap';
+
+	// const animateOnClick = {e} => {
+	// 	const {target} = e;
+
+	// 	gsap.to(target, {x: += 100})
+	// }
 
 	let annualPrice = false;
 	let lenis: Lenis;
+	let activeIndex: number | null = 0;
+
+	function toggle(index: number) {
+		activeIndex = activeIndex === index ? null : index;
+	}
+	const funnellevels = [
+		{ title: 'funnel-one-title', text: 'funnel-one-text' },
+		{ title: 'funnel-two-title', text: 'funnel-two-text' },
+		{ title: 'funnel-three-title', text: 'funnel-three-text' },
+		{ title: 'funnel-four-title', text: 'funnel-four-text' }
+	];
 
 	const reviews = [
 		{ imageSrc: reviwerOne, reviewKey: 'reviewOne' },
@@ -67,6 +85,7 @@
 				| { bottom: string; left: string; top?: undefined; right?: undefined }
 		  )[]
 		| (ArrayLike<unknown> | { [s: string]: unknown })[];
+
 	function getSavings(annualPrice: boolean) {
 		switch (annualPrice) {
 			case false:
@@ -84,11 +103,6 @@
 		lenis = new Lenis({
 			duration: 1.3,
 			easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-			// direction: 'vertical',
-			// gestureDirection: 'vertical',
-			// smooth: true,
-			// mouseMultiplier: 1,
-			// smoothTouch: false,
 			touchMultiplier: 2,
 			infinite: false
 		});
@@ -99,10 +113,6 @@
 		}
 
 		requestAnimationFrame(raf);
-
-		// lenis.on('scroll', (e) => {
-		// 	console.log(e);
-		// });
 	});
 
 	onDestroy(() => {
@@ -115,6 +125,7 @@
 <svelte:head>
 	<script src="https://unpkg.com/lenis@1.1.17/dist/lenis.min.js"></script>
 </svelte:head>
+
 <MediaQuery query="(min-width: 1000px)" let:matches>
 	{#if matches}
 		<div class="wrapper" transition:fade={{ delay: 0, duration: 500 }}>
@@ -188,15 +199,6 @@
 											<div class="text">
 												{@html $t('funnel-one')}
 											</div>
-
-											<div class="description">
-												<div class="description-title">
-													<h3>{@html $t('funnel-one-title')}</h3>
-												</div>
-												<div class="description-text">
-													<h3>{@html $t('funnel-one-text')}</h3>
-												</div>
-											</div>
 										</div>
 									</div>
 									<div class="level">
@@ -204,15 +206,6 @@
 											<img src={funnelPieceTwo} alt="Funnel piece two" />
 											<div class="text">
 												{@html $t('funnel-two')}
-											</div>
-
-											<div class="description">
-												<div class="description-title">
-													<h3>{@html $t('funnel-two-title')}</h3>
-												</div>
-												<div class="description-text">
-													<h3>{@html $t('funnel-two-text')}</h3>
-												</div>
 											</div>
 										</div>
 									</div>
@@ -222,15 +215,6 @@
 											<div class="text">
 												{@html $t('funnel-three')}
 											</div>
-
-											<div class="description">
-												<div class="description-title">
-													<h3>{@html $t('funnel-three-title')}</h3>
-												</div>
-												<div class="description-text">
-													<h3>{@html $t('funnel-three-text')}</h3>
-												</div>
-											</div>
 										</div>
 									</div>
 									<div class="level">
@@ -238,15 +222,6 @@
 											<img src={funnelPieceFour} alt="Funnel piece four" />
 											<div class="text">
 												{@html $t('funnel-four')}
-											</div>
-
-											<div class="description">
-												<div class="description-title">
-													<h3>{@html $t('funnel-four-title')}</h3>
-												</div>
-												<div class="description-text">
-													<h3>{@html $t('funnel-four-text')}</h3>
-												</div>
 											</div>
 										</div>
 									</div>
@@ -262,6 +237,26 @@
 											alt="animated character pointing at funnel"
 										/>
 									</div>
+								</div>
+								<div class="funnel-dropdown-container">
+									{#each funnellevels as { title, text }, index}
+										<div class="funnel-item" class:active={activeIndex === index}>
+											<button
+												class="funnel-title"
+												on:click={() => toggle(index)}
+												aria-expanded={activeIndex === index}
+											>
+												<span class="funnel-title-text">{@html $t(title)}</span>
+												<span class="icon">{activeIndex === index ? '−' : '+'}</span>
+											</button>
+
+											{#if activeIndex === index}
+												<div class="funnel-text" transition:slide={{ duration: 300 }}>
+													{@html $t(text)}
+												</div>
+											{/if}
+										</div>
+									{/each}
 								</div>
 							</div>
 						</section>
@@ -736,35 +731,6 @@
 							color: var(--white);
 							width: 80%;
 						}
-						.description {
-							font-family: 'Sfpro';
-							font-variation-settings: 'wght' 400;
-							text-wrap: wrap;
-
-							position: absolute;
-							right: clamp(-18.75rem, 7.337rem - 21.7391vw, -6.25rem);
-							top: 50%;
-							transform: translate(50%, -50%);
-
-							font-size: var(--fs-300);
-							width: clamp(16rem, 6.2174rem + 15.6522vw, 25rem);
-
-							display: flex;
-							flex-direction: column;
-							justify-content: space-evenly;
-							padding: 5px 20px;
-							background-color: rgba(120, 174, 255, 0.25);
-							border-radius: 15px;
-							.description-title {
-								font-size: var(--fs-400);
-
-								color: var(--blue-800);
-							}
-							.description-text {
-								font-size: var(--fs-300);
-								color: var(--blue-700);
-							}
-						}
 					}
 
 					.one {
@@ -797,6 +763,64 @@
 						left: -15%;
 						transform: translateX(50%);
 						position: absolute;
+					}
+				}
+				.funnel-dropdown-container {
+					position: absolute;
+					left: 75%;
+					width: 30ch;
+					font-family: 'Roundo';
+					.funnel-item {
+						background-color: rgba(255, 255, 255, 0.05);
+						border-radius: 8px;
+						margin-bottom: 1rem;
+						transition: all 0.3s ease;
+
+						&:hover {
+							background-color: rgba(0, 0, 0, 0.05);
+						}
+
+						&.active {
+							background-color: #ffffff;
+							box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+							.funnel-title {
+								color: var(--blue-700, #124fa9);
+							}
+						}
+						.funnel-title {
+							background: none;
+							border: none;
+							cursor: pointer;
+							display: flex;
+							justify-content: space-between;
+							align-items: center;
+							width: 100%;
+							padding: 1.25rem;
+							font-family: inherit;
+							font-size: var(--fs-600);
+							font-weight: 500;
+							color: var(--blue-700);
+							transition: color 0.3s ease;
+							.funnel-title-text {
+								text-align: left;
+								flex-grow: 1;
+								padding-right: 1rem;
+							}
+							.icon {
+								font-size: 1.5rem;
+								min-width: 24px;
+								display: flex;
+								justify-content: center;
+								align-items: center;
+							}
+						}
+						.funnel-text {
+							padding: 0 1rem 1rem;
+							font-family: 'Sfpro', sans-serif;
+							font-size: var(--fs-400);
+							line-height: 1.6;
+							color: var(--blue-700, #124fa9);
+						}
 					}
 				}
 			}

@@ -313,16 +313,7 @@
 				}
 			}
 
-			.savings {
-				position: absolute;
-				right: 20px;
-				bottom: 20px;
-				width: 100%;
-				text-align: end;
-				color: var(--black);
-				font-weight: 500;
-				font-size: 0.9em;
-			}
+			
 		}
 
 		.card-back {
@@ -496,16 +487,7 @@
 				width: 25%;
 			}
 
-			.savings {
-				position: absolute;
-				right: 20px;
-				bottom: 20px;
-				width: 100%;
-				text-align: end;
-				color: var(--black);
-				font-weight: 500;
-				font-size: 0.9em;
-			}
+			
 		}
 
 		.card-back {
@@ -559,12 +541,7 @@
 						.pricing-annual {
 							font-weight: 500;
 							font-size: var(--fs-600);
-							&.negative {
-								color: var(--red);
-							}
-							&.positive {
-								color: var(--green);
-							}
+							
 						}
 					}
 				}
